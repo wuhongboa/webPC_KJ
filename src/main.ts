@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './routers'
 import pinia from './store'
+import '@/styles/index.scss' // 全局样式
 
 import { registerElIcons } from '@/plugins/ElIcons'
 // 引入全局组件布局

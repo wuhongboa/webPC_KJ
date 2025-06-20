@@ -1,3 +1,4 @@
+@use './variables.scss' as var;
 html,
 body {
   height: 100%;
@@ -55,14 +56,14 @@ body {
 
 /* nprogress样式 */
 #nprogress .bar {
-  background: $primaryColor !important;
+  background: var.$primaryColor !important;
 }
 #nprogress .spinner-icon {
-  border-top-color: $primaryColor !important;
-  border-left-color: $primaryColor !important;
+  border-top-color: var.$primaryColor !important;
+  border-left-color: var.$primaryColor !important;
 }
 #nprogress .peg {
-  box-shadow: 0 0 10px $primaryColor, 0 0 5px $primaryColor !important;
+  box-shadow: 0 0 10px var.$primaryColor, 0 0 5px var.$primaryColor !important;
 }
 
 .app-container {
