@@ -1,8 +1,12 @@
 <template>
   <div v-if="isShow" ref="rightMenu" class="g-right-click-menu" :style="style">
-    <div v-for="(item, index) in data" :key="index" class="operating" @click.stop="operatingRightAction($event, item)">{{
-      item.label
-    }}</div>
+    <div
+      v-for="(item, index) in data"
+      :key="index"
+      class="operating"
+      @click.stop="operatingRightAction($event, item)"
+      >{{ item.label }}</div
+    >
   </div>
 </template>
 <script lang="ts">

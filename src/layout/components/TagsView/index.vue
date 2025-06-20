@@ -1,7 +1,12 @@
 <template>
   <div class="m-tags-view">
     <div class="tags-view">
-      <el-tabs v-model="activeTabsValue" type="card" @tab-click="tabClick" @tab-remove="removeTab">
+      <el-tabs
+        v-model="activeTabsValue"
+        type="card"
+        @tab-click="tabClick"
+        @tab-remove="removeTab"
+      >
         <el-tab-pane
           v-for="item in visitedViews"
           :key="item.path"
@@ -98,8 +103,11 @@
     },
   })
   function toLastView(activeTabPath) {
-    let index = visitedViews.value.findIndex((item) => item.path === activeTabPath)
-    const nextTab = visitedViews.value[index + 1] || visitedViews.value[index - 1]
+    let index = visitedViews.value.findIndex(
+      (item) => item.path === activeTabPath,
+    )
+    const nextTab =
+      visitedViews.value[index + 1] || visitedViews.value[index - 1]
     if (!nextTab) return
     router.push(nextTab.path)
     TagsViewStore.addVisitedView(nextTab)

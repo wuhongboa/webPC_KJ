@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
     <div class="header">
-      <el-input v-model="input" placeholder="请输入文件名" style="width: 200px; margin-right: 10px" />
+      <el-input
+        v-model="input"
+        placeholder="请输入文件名"
+        style="width: 200px; margin-right: 10px"
+      />
       <el-button type="primary" @click="exportExcelAction">
         <el-icon style="margin-right: 6px"><Download /></el-icon>导出 Excel
       </el-button>
@@ -10,13 +14,26 @@
       <el-table :data="list" style="width: 100%" border>
         <template v-for="(item, index) in column" :key="index">
           <template v-if="item.children">
-            <el-table-column :prop="item.name" :label="item.label" :width="item.width">
+            <el-table-column
+              :prop="item.name"
+              :label="item.label"
+              :width="item.width"
+            >
               <template v-for="(ite, i) in item.children" :key="i">
-                <el-table-column :prop="ite.name" :label="ite.label" :width="ite.width" />
+                <el-table-column
+                  :prop="ite.name"
+                  :label="ite.label"
+                  :width="ite.width"
+                />
               </template>
             </el-table-column>
           </template>
-          <el-table-column v-else :prop="item.name" :label="item.label" :width="item.width" />
+          <el-table-column
+            v-else
+            :prop="item.name"
+            :label="item.label"
+            :width="item.width"
+          />
         </template>
       </el-table>
     </div>

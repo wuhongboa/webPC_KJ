@@ -3,10 +3,15 @@
     <div class="header">
       <el-form ref="ruleFormRef" :inline="true" :model="formInline">
         <el-form-item label="菜单名称" prop="username">
-          <el-input v-model="formInline.username" placeholder="请输入菜单名称" />
+          <el-input
+            v-model="formInline.username"
+            placeholder="请输入菜单名称"
+          />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" :icon="Search" @click="onSubmit">查询</el-button>
+          <el-button type="primary" :icon="Search" @click="onSubmit"
+            >查询</el-button
+          >
           <el-button @click="reset(ruleFormRef)">重置</el-button>
         </el-form-item>
       </el-form>
@@ -19,15 +24,36 @@
         </el-button>
       </div>
       <div class="table-wrap">
-        <el-table :data="tableData" style="width: 100%" border default-expand-all row-key="id" class="table">
+        <el-table
+          :data="tableData"
+          style="width: 100%"
+          border
+          default-expand-all
+          row-key="id"
+          class="table"
+        >
           <el-table-column prop="menuName" label="权限名称" />
           <el-table-column prop="menuType" label="权限类型" />
           <el-table-column prop="menuRouter" label="权限路由" />
           <el-table-column prop="identification" label="权限标识" />
           <el-table-column prop="status" label="操作">
             <template #default="scope">
-              <el-button type="primary" size="small" icon="Edit" @click="edit(scope.row)"> 编辑 </el-button>
-              <el-button type="danger" size="small" icon="Delete" @click="del(scope.row)"> 删除 </el-button>
+              <el-button
+                type="primary"
+                size="small"
+                icon="Edit"
+                @click="edit(scope.row)"
+              >
+                编辑
+              </el-button>
+              <el-button
+                type="danger"
+                size="small"
+                icon="Delete"
+                @click="del(scope.row)"
+              >
+                删除
+              </el-button>
             </template>
           </el-table-column>
         </el-table>

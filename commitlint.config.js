@@ -35,8 +35,14 @@ module.exports = {
       { value: '特性', name: '特性:     新增功能' },
       { value: '修复', name: '修复:     修复缺陷' },
       { value: '文档', name: '文档:     文档变更' },
-      { value: '格式', name: '格式:     代码格式（不影响功能，例如空格、分号等格式修正）' },
-      { value: '重构', name: '重构:     代码重构（不包括 bug 修复、功能新增）' },
+      {
+        value: '格式',
+        name: '格式:     代码格式（不影响功能，例如空格、分号等格式修正）',
+      },
+      {
+        value: '重构',
+        name: '重构:     代码重构（不包括 bug 修复、功能新增）',
+      },
       { value: '性能', name: '性能:     性能优化' },
       { value: '测试', name: '测试:     添加疏漏测试或已有测试改动' },
       {
@@ -45,7 +51,10 @@ module.exports = {
       },
       { value: '集成', name: '集成:     修改 CI 配置、脚本' },
       { value: '回退', name: '回退:     回滚 commit' },
-      { value: '其他', name: '其他:     对构建过程或辅助工具和库的更改（不影响源文件、测试用例）' },
+      {
+        value: '其他',
+        name: '其他:     对构建过程或辅助工具和库的更改（不影响源文件、测试用例）',
+      },
     ],
     // emptyScopesAlias: 'empty:      不填写',
     // customScopesAlias: 'custom:     自定义',
@@ -65,7 +74,9 @@ module.exports = {
     breaklineNumber: 100,
     breaklineChar: '|',
     skipQuestions: [],
-    issuePrefixs: [{ value: 'closed', name: 'closed:   ISSUES has been processed' }],
+    issuePrefixs: [
+      { value: 'closed', name: 'closed:   ISSUES has been processed' },
+    ],
     customIssuePrefixsAlign: 'top',
     emptyIssuePrefixsAlias: 'skip',
     customIssuePrefixsAlias: 'custom',

@@ -12,7 +12,9 @@
 
   const SettingStore = useSettingStore()
   // 配置全局组件大小
-  const globalComSize = computed((): string => SettingStore.themeConfig.globalComSize)
+  const globalComSize = computed(
+    (): string => SettingStore.themeConfig.globalComSize,
+  )
 </script>
 
 <style lang="scss">

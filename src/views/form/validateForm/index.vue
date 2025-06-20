@@ -1,7 +1,14 @@
 <template>
   <PageWrapLayout>
     <div style="max-width: 800px">
-      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="120px" class="demo-ruleForm" :size="formSize">
+      <el-form
+        ref="ruleFormRef"
+        :model="ruleForm"
+        :rules="rules"
+        label-width="120px"
+        class="demo-ruleForm"
+        :size="formSize"
+      >
         <el-form-item label="活动名称" prop="name">
           <el-input v-model="ruleForm.name" />
         </el-form-item>
@@ -14,7 +21,12 @@
         <el-form-item label="即时配送" required>
           <el-col :span="11">
             <el-form-item prop="date1">
-              <el-date-picker v-model="ruleForm.date1" type="date" placeholder="选择时间" style="width: 100%" />
+              <el-date-picker
+                v-model="ruleForm.date1"
+                type="date"
+                placeholder="选择时间"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
           <el-col class="text-center" :span="2" style="text-align: center">
@@ -22,7 +34,11 @@
           </el-col>
           <el-col :span="11">
             <el-form-item prop="date2">
-              <el-time-picker v-model="ruleForm.date2" placeholder="选择时间" style="width: 100%" />
+              <el-time-picker
+                v-model="ruleForm.date2"
+                placeholder="选择时间"
+                style="width: 100%"
+              />
             </el-form-item>
           </el-col>
         </el-form-item>
@@ -50,7 +66,9 @@
           <el-input v-model="ruleForm.desc" type="textarea" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm(ruleFormRef)">立即创建</el-button>
+          <el-button type="primary" @click="submitForm(ruleFormRef)"
+            >立即创建</el-button
+          >
           <el-button @click="resetForm(ruleFormRef)">重置</el-button>
         </el-form-item>
       </el-form>

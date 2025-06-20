@@ -1,6 +1,13 @@
 <template>
   <el-dialog v-model="dialogVisible" title="修改密码" width="40%">
-    <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="120px" class="demo-ruleForm" :size="formSize">
+    <el-form
+      ref="ruleFormRef"
+      :model="ruleForm"
+      :rules="rules"
+      label-width="120px"
+      class="demo-ruleForm"
+      :size="formSize"
+    >
       <el-form-item label="姓名">
         <el-input v-model="ruleForm.name" disabled></el-input>
       </el-form-item>
@@ -14,7 +21,9 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="submitForm(ruleFormRef)">确定</el-button>
+        <el-button type="primary" @click="submitForm(ruleFormRef)"
+          >确定</el-button
+        >
       </span>
     </template>
   </el-dialog>

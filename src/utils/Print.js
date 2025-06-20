@@ -41,7 +41,10 @@
       for (var i = 0; i < styles.length; i++) {
         str += styles[i].outerHTML
       }
-      str += '<style>' + (this.options.noPrint ? this.options.noPrint : '.no-print') + '{display:none;}</style>'
+      str +=
+        '<style>' +
+        (this.options.noPrint ? this.options.noPrint : '.no-print') +
+        '{display:none;}</style>'
 
       return str
     },
@@ -111,7 +114,8 @@
         try {
           setTimeout(function () {
             w.focus()
-            typeof _this.options.onStart === 'function' && _this.options.onStart()
+            typeof _this.options.onStart === 'function' &&
+              _this.options.onStart()
             if (!w.document.execCommand('print', false, null)) {
               w.print()
             }

@@ -13,7 +13,14 @@
           <div class="item-right">
             <div class="item-right-inner">
               <div class="text-title">用户访问量</div>
-              <div class="text-number"><count-to :start-val="0" :end-val="6285" :duration="4000" separator=""></count-to></div>
+              <div class="text-number"
+                ><count-to
+                  :start-val="0"
+                  :end-val="6285"
+                  :duration="4000"
+                  separator=""
+                ></count-to
+              ></div>
               <div class="text-der text-decenter-wrapr">
                 <span class="left">同比昨天</span>
                 <img src="@/assets/image/allow.png" />

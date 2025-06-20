@@ -1,23 +1,45 @@
 <template>
   <el-dialog v-model="dialogVisible" :title="title" width="50%" @close="close">
-    <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="100px">
+    <el-form
+      ref="ruleFormRef"
+      :model="ruleForm"
+      :rules="rules"
+      label-width="100px"
+    >
       <el-form-item label="上级部门" prop="id">
-        <el-cascader v-model="ruleForm.id" :options="deptDataOptions" :props="deptProps" clearable style="width: 100%" />
+        <el-cascader
+          v-model="ruleForm.id"
+          :options="deptDataOptions"
+          :props="deptProps"
+          clearable
+          style="width: 100%"
+        />
       </el-form-item>
       <el-form-item label="部门名称" prop="deptName">
         <el-input v-model="ruleForm.deptName" placeholder="请输入部门名称" />
       </el-form-item>
       <el-form-item label="状态">
-        <el-switch v-model="ruleForm.status" inline-prompt active-text="启用" inactive-text="禁用"></el-switch>
+        <el-switch
+          v-model="ruleForm.status"
+          inline-prompt
+          active-text="启用"
+          inactive-text="禁用"
+        ></el-switch>
       </el-form-item>
       <el-form-item label="备注">
-        <el-input v-model="ruleForm.remark" type="textarea" placeholder="请输入备注" />
+        <el-input
+          v-model="ruleForm.remark"
+          type="textarea"
+          placeholder="请输入备注"
+        />
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="handleConfim(ruleFormRef)">确定</el-button>
+        <el-button type="primary" @click="handleConfim(ruleFormRef)"
+          >确定</el-button
+        >
       </span>
     </template>
   </el-dialog>

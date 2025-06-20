@@ -39,7 +39,8 @@ const functionPageRouter = [
       },
       {
         path: '/function-page/information-list',
-        component: () => import('@/views/functionPage/informationList/index.vue'),
+        component: () =>
+          import('@/views/functionPage/informationList/index.vue'),
         name: 'informationList',
         meta: { title: '信息列表', keepAlive: true, icon: 'MenuIcon' },
       },

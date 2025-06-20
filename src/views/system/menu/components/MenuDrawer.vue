@@ -1,7 +1,12 @@
 <template>
   <div>
     <el-drawer v-model="dialogVisible" :title="title" size="50%">
-      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="120px">
+      <el-form
+        ref="ruleFormRef"
+        :model="ruleForm"
+        :rules="rules"
+        label-width="120px"
+      >
         <el-form-item label="菜单类型" prop="menuType">
           <el-radio-group v-model="ruleForm.menuType">
             <el-radio-button label="目录" />
@@ -13,10 +18,18 @@
           <el-input v-model="ruleForm.menuName" placeholder="请输入菜单名称" />
         </el-form-item>
         <el-form-item label="父级菜单" prop="role">
-          <el-cascader style="width: 100%" :options="menuData" :props="cascaderProps" clearable />
+          <el-cascader
+            style="width: 100%"
+            :options="menuData"
+            :props="cascaderProps"
+            clearable
+          />
         </el-form-item>
         <el-form-item label="权限标识" prop="identification">
-          <el-input v-model="ruleForm.identification" placeholder="请输入权限标识" />
+          <el-input
+            v-model="ruleForm.identification"
+            placeholder="请输入权限标识"
+          />
         </el-form-item>
         <el-form-item label="路由地址" prop="identification">
           <el-input v-model="ruleForm.url" placeholder="请输入路由地址" />
@@ -25,7 +38,9 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="handleClose(ruleFormRef)">确定</el-button>
+          <el-button type="primary" @click="handleClose(ruleFormRef)"
+            >确定</el-button
+          >
         </span>
       </template>
     </el-drawer>
@@ -41,7 +56,9 @@
   const dialogVisible = ref()
   const rules = reactive({
     roleName: [{ required: true, message: '请输入角色名称', trigger: 'blur' }],
-    roleIdentification: [{ required: true, message: '请输入角色标识', trigger: 'blur' }],
+    roleIdentification: [
+      { required: true, message: '请输入角色标识', trigger: 'blur' },
+    ],
   })
   const title = ref('新增菜单')
   const ruleForm = reactive({

@@ -1,7 +1,12 @@
 <template>
   <div class="sidebar-logo-container">
     <transition name="sidebarLogoFadeCl">
-      <router-link v-if="isCollapse" key="collapse" class="sidebar-logo-link" to="/">
+      <router-link
+        v-if="isCollapse"
+        key="collapse"
+        class="sidebar-logo-link"
+        to="/"
+      >
         <img src="@/assets/image/logo.png" class="sidebar-logo" />
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">

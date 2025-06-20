@@ -1,9 +1,18 @@
 <template>
   <el-dropdown trigger="hover" @command="setAssemblySize">
-    <svg-icon class-name="size-icon header-icon" icon-class="size" style="font-size: 20px; cursor: pointer" />
+    <svg-icon
+      class-name="size-icon header-icon"
+      icon-class="size"
+      style="font-size: 20px; cursor: pointer"
+    />
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item v-for="item in assemblySizeList" :key="item" :disabled="globalComSize === item" :command="item">
+        <el-dropdown-item
+          v-for="item in assemblySizeList"
+          :key="item"
+          :disabled="globalComSize === item"
+          :command="item"
+        >
           {{ assemblySizeListCh[item] }}
         </el-dropdown-item>
       </el-dropdown-menu>
@@ -16,7 +25,9 @@
   import { useSettingStore } from '@/store/modules/setting'
   const SettingStore = useSettingStore()
 
-  const globalComSize = computed((): string => SettingStore.themeConfig.globalComSize)
+  const globalComSize = computed(
+    (): string => SettingStore.themeConfig.globalComSize,
+  )
 
   const assemblySizeListCh = reactive<{ [key: string]: any }>({
     default: '默认',

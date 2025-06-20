@@ -1,7 +1,11 @@
 <template>
   <div class="m-screenful">
     <el-tooltip effect="dark" content="全屏" placement="bottom">
-      <svg-icon :icon-class="isFullscreen ? 'exit-fullscreen' : 'fullscreen'" class-name="header-icon" @click="toggle" />
+      <svg-icon
+        :icon-class="isFullscreen ? 'exit-fullscreen' : 'fullscreen'"
+        class-name="header-icon"
+        @click="toggle"
+      />
     </el-tooltip>
   </div>
 </template>

@@ -1,6 +1,10 @@
 <template>
   <PageWrapLayout>
-    <SearchForm :columns="searchColumns" @submit="onSubmit" @reset="resetForm" />
+    <SearchForm
+      :columns="searchColumns"
+      @submit="onSubmit"
+      @reset="resetForm"
+    />
 
     <div v-if="Object.keys(formValue).length">{{ formValue }}</div>
   </PageWrapLayout>

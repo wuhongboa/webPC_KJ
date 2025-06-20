@@ -1,3 +1,11 @@
+/*
+ * @Author: wuhongboa 1679462735@qq.com
+ * @Date: 2025-06-19 13:59:15
+ * @LastEditors: wuhongboa 1679462735@qq.com
+ * @LastEditTime: 2025-06-20 11:23:47
+ * @FilePath: \newGit\vite.config.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { defineConfig, ConfigEnv, UserConfig } from 'vite'
 import path from 'path'
 // vite.config.ts中无法使用import.meta.env 所以需要引入
@@ -20,7 +28,15 @@ function resolve(dir) {
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   return {
     plugins: [
-      vue(),
+      vue({
+        template: {
+          compilerOptions: {
+            whitespace: 'preserve',
+            // 开启完整源码映射
+            sourceMap: true,
+          },
+        },
+      }),
       vueSetupExtend(),
       // AutoImport({
       //   resolvers: [ElementPlusResolver()],
@@ -45,10 +61,14 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
           ext: '.gz',
         }),
     ],
+    build: {
+      sourcemap: true, // 必须开启
+      minify: false,
+    },
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "./src/styles/index.scss" as *;`,
+          additionalData: `@use "@/styles/index.scss" as *;`,
         },
       },
     },
@@ -69,6 +89,10 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       open: true,
       https: false,
       cors: true,
+      // hmr: true,
+      // fs: {
+      //   strict: true,
+      // },
       // 代理跨域（模拟示例）
       proxy: {
         // "/api": {
@@ -82,20 +106,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     //去除 console debugger
     // esbuild: {
     //   pure:mode==='production' ? ["console.log", "debugger"] : []
-    // },
-
-    // build: {
-    //   // terserOptions: {
-    //   //   compress: {
-    //   //     drop_console: true,
-    //   //     drop_debugger: true,
-    //   //   },
-    //   // },
-    //   rollupOptions: {
-    //     input: {
-    //       main: './public/index.html',
-    //     },
-    //   },
     // },
   }
 })

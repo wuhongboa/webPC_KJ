@@ -1,8 +1,12 @@
 <template>
   <div class="m-edit-table">
-    <div v-if="mode !== 'hide' && mode !== 'bottom'" style="margin-top: 15px; margin-bottom: 15px">
+    <div
+      v-if="mode !== 'hide' && mode !== 'bottom'"
+      style="margin-top: 15px; margin-bottom: 15px"
+    >
       <el-button style="width: 100%" @click="add">
-        <el-icon style="margin-right: 4px"><plus /></el-icon> 添加一行数据</el-button
+        <el-icon style="margin-right: 4px"><plus /></el-icon>
+        添加一行数据</el-button
       >
     </div>
     <el-table :data="transData" style="width: 100%" row-key="id" border>
@@ -15,15 +19,32 @@
           :fixed="item.fixed"
           :label="item.label"
         />
-        <el-table-column v-else :prop="item.name" :width="item.width" :align="item.align" :fixed="item.fixed" :label="item.label">
+        <el-table-column
+          v-else
+          :prop="item.name"
+          :width="item.width"
+          :align="item.align"
+          :fixed="item.fixed"
+          :label="item.label"
+        >
           <template #default="scope">
             <template v-if="!item.slot">
               <template v-if="item.readonly">
                 {{ scope.row[item.name] }}
               </template>
               <template v-else-if="item.valueType === 'select'">
-                <el-select v-if="scope.row.edit" v-model="scope.row[item.name]" clearable :placeholder="`请选择`">
-                  <el-option v-for="ite in item.options" :key="ite.value" :label="ite.label" :value="ite.value" />
+                <el-select
+                  v-if="scope.row.edit"
+                  v-model="scope.row[item.name]"
+                  clearable
+                  :placeholder="`请选择`"
+                >
+                  <el-option
+                    v-for="ite in item.options"
+                    :key="ite.value"
+                    :label="ite.label"
+                    :value="ite.value"
+                  />
                 </el-select>
                 <span v-else>{{ filterOption(item, scope) }}</span>
               </template>
@@ -40,7 +61,12 @@
                 <span v-else>{{ scope.row[item.name] || '--' }}</span>
               </template>
               <template v-else>
-                <el-input v-if="scope.row.edit" v-model="scope.row[item.name]" clearable placeholder="请输入"></el-input>
+                <el-input
+                  v-if="scope.row.edit"
+                  v-model="scope.row[item.name]"
+                  clearable
+                  placeholder="请输入"
+                ></el-input>
                 <span v-else>{{ scope.row[item.name] || '--' }}</span>
               </template>
             </template>
@@ -50,30 +76,73 @@
       </template>
       <el-table-column prop="operator" label="操作" width="250px" fixed="right">
         <template #default="scope">
-          <el-button v-if="scope.row.edit" type="primary" size="small" icon="CircleCheckFilled" @click="confirmEdit(scope.row)">
+          <el-button
+            v-if="scope.row.edit"
+            type="primary"
+            size="small"
+            icon="CircleCheckFilled"
+            @click="confirmEdit(scope.row)"
+          >
             保存
           </el-button>
-          <el-button v-else type="primary" size="small" icon="Edit" @click="scope.row.edit = !scope.row.edit"> 编辑 </el-button>
-          <el-popover v-model:visible="scope.row.visible" trigger="click" placement="top" :width="160">
+          <el-button
+            v-else
+            type="primary"
+            size="small"
+            icon="Edit"
+            @click="scope.row.edit = !scope.row.edit"
+          >
+            编辑
+          </el-button>
+          <el-popover
+            v-model:visible="scope.row.visible"
+            trigger="click"
+            placement="top"
+            :width="160"
+          >
             <p style="display: flex; align-items: center; margin-bottom: 10px">
-              <el-icon color="#faad14" style="margin-right: 10px"><warning-filled /></el-icon>
+              <el-icon color="#faad14" style="margin-right: 10px"
+                ><warning-filled
+              /></el-icon>
               删除此行？</p
             >
             <div style="text-align: right; margin: 0">
-              <el-button size="small" @click="scope.row.visible = false">取消</el-button>
-              <el-button size="small" type="primary" @click="deleteAction(scope.row)">确定</el-button>
+              <el-button size="small" @click="scope.row.visible = false"
+                >取消</el-button
+              >
+              <el-button
+                size="small"
+                type="primary"
+                @click="deleteAction(scope.row)"
+                >确定</el-button
+              >
             </div>
             <template #reference>
-              <el-button icon="Delete" type="danger" size="small" @click="deleteCurrent(scope.row)">删除</el-button>
+              <el-button
+                icon="Delete"
+                type="danger"
+                size="small"
+                @click="deleteCurrent(scope.row)"
+                >删除</el-button
+              >
             </template>
           </el-popover>
-          <el-button v-if="scope.row.edit" type="primary" size="small" icon="Edit" @click="cancelEdit(scope.row)"> 取消 </el-button>
+          <el-button
+            v-if="scope.row.edit"
+            type="primary"
+            size="small"
+            icon="Edit"
+            @click="cancelEdit(scope.row)"
+          >
+            取消
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
     <div v-if="mode !== 'hide' && mode !== 'top'" style="margin-top: 15px">
       <el-button style="width: 100%" @click="add">
-        <el-icon style="margin-right: 4px"><plus /></el-icon> 添加一行数据</el-button
+        <el-icon style="margin-right: 4px"><plus /></el-icon>
+        添加一行数据</el-button
       >
     </div>
   </div>

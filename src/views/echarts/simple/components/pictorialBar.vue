@@ -12,7 +12,9 @@
 
   for (let i = 0; i < 20; i++) {
     let date = new Date((dottedBase += 3600 * 24 * 1000))
-    category.push([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'))
+    category.push(
+      [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'),
+    )
     let b = Math.random() * 200
     let d = Math.random() * 200
     barData.push(b)

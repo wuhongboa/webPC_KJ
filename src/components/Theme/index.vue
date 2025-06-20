@@ -3,11 +3,15 @@
     <div class="m-setting-fix">
       <div class="item">
         <div class="item-child" @click="operator(1)">
-          <el-icon size="30" color="#3698fd" style="margin-bottom: 8px"><brush /></el-icon>
+          <el-icon size="30" color="#3698fd" style="margin-bottom: 8px"
+            ><brush
+          /></el-icon>
           主题配置
         </div>
         <div class="item-child item-child2" @click="operator(2)">
-          <el-icon size="30" color="#3698fd" style="margin-bottom: 8px"><Link /></el-icon>
+          <el-icon size="30" color="#3698fd" style="margin-bottom: 8px"
+            ><Link
+          /></el-icon>
           源码拷贝
         </div>
       </div>
@@ -15,7 +19,12 @@
     <el-drawer v-model="drawer" title="主题配置" size="300px">
       <div class="theme-item">
         <label>导航栏布局</label>
-        <el-select v-model="layout" placeholder="请选择" style="width: 150px" @change="(val) => changeSwitch('mode', val)">
+        <el-select
+          v-model="layout"
+          placeholder="请选择"
+          style="width: 150px"
+          @change="(val) => changeSwitch('mode', val)"
+        >
           <el-option label="纵向" value="vertical"></el-option>
           <el-option label="横向" value="horizontal"></el-option>
           <el-option label="分栏" value="columns"></el-option>
@@ -23,7 +32,11 @@
       </div>
       <div class="theme-item">
         <label>主题颜色</label>
-        <el-color-picker v-model="primary" :predefine="predefineColor" @change="changePrimary" />
+        <el-color-picker
+          v-model="primary"
+          :predefine="predefineColor"
+          @change="changePrimary"
+        />
       </div>
       <div class="theme-item">
         <label>暗黑模式</label>
@@ -31,27 +44,45 @@
       </div>
       <div class="theme-item">
         <label>灰色模式</label>
-        <el-switch v-model="gray" @change="(val) => changeGrayWeak('gray', val)" />
+        <el-switch
+          v-model="gray"
+          @change="(val) => changeGrayWeak('gray', val)"
+        />
       </div>
       <div class="theme-item">
         <label>色弱模式</label>
-        <el-switch v-model="weak" @change="(val) => changeGrayWeak('weak', val)" />
+        <el-switch
+          v-model="weak"
+          @change="(val) => changeGrayWeak('weak', val)"
+        />
       </div>
       <div class="theme-item">
         <label>标签栏</label>
-        <el-switch v-model="showTag" @change="(val) => changeSwitch('showTag', val)" />
+        <el-switch
+          v-model="showTag"
+          @change="(val) => changeSwitch('showTag', val)"
+        />
       </div>
       <div class="theme-item">
         <label>侧边栏 Logo</label>
-        <el-switch v-model="showLogo" @change="(val) => changeSwitch('showLogo', val)" />
+        <el-switch
+          v-model="showLogo"
+          @change="(val) => changeSwitch('showLogo', val)"
+        />
       </div>
       <div class="theme-item">
         <label>保持一个子菜单的展开</label>
-        <el-switch v-model="uniqueOpened" @change="(val) => changeSwitch('uniqueOpened', val)" />
+        <el-switch
+          v-model="uniqueOpened"
+          @change="(val) => changeSwitch('uniqueOpened', val)"
+        />
       </div>
       <div class="theme-item">
         <label>固定header</label>
-        <el-switch v-model="fixedHeader" @change="(val) => changeSwitch('fixedHeader', val)" />
+        <el-switch
+          v-model="fixedHeader"
+          @change="(val) => changeSwitch('fixedHeader', val)"
+        />
       </div>
     </el-drawer>
   </div>
@@ -85,7 +116,16 @@
   })
 
   // 预定义主题颜色
-  const predefineColor = ['#409EFF', '#1890ff', '#304156', '#212121', '#11a983', '#13c2c2', '#6959CD', '#f5222d']
+  const predefineColor = [
+    '#409EFF',
+    '#1890ff',
+    '#304156',
+    '#212121',
+    '#11a983',
+    '#13c2c2',
+    '#6959CD',
+    '#f5222d',
+  ]
 
   const operator = (type) => {
     switch (type) {
@@ -123,7 +163,10 @@
   const changePrimary = (val) => {
     if (!val) {
       primary.value = val = PRIMARY_COLOR
-      ElMessage({ type: 'success', message: `主题颜色已重置为 ${PRIMARY_COLOR}` })
+      ElMessage({
+        type: 'success',
+        message: `主题颜色已重置为 ${PRIMARY_COLOR}`,
+      })
     }
     document.documentElement.style.setProperty('--el-color-primary', val)
     changeSwitch('primary', val)
@@ -184,13 +227,15 @@
       border-radius: 5.5px;
       font-size: 12px;
       background: #ebf5ff;
-      transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      transition: color 0.15s ease, background-color 0.15s ease,
+        border-color 0.15s ease, box-shadow 0.15s ease;
     }
     .item-child2 {
       margin-top: 10px;
       color: #b37feb;
       background: #f7f2fd;
-      transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      transition: color 0.15s ease, background-color 0.15s ease,
+        border-color 0.15s ease, box-shadow 0.15s ease;
     }
   }
 

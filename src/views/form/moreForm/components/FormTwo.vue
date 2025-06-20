@@ -1,15 +1,29 @@
 <template>
   <el-card header="表单组件2">
-    <el-form ref="formRuleTwoRef" :model="form" :rules="rules" label-width="100px">
+    <el-form
+      ref="formRuleTwoRef"
+      :model="form"
+      :rules="rules"
+      label-width="100px"
+    >
       <el-row :gutter="35">
         <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
           <el-form-item label="手机" prop="phone">
-            <el-input v-model="form.phone" placeholder="请输入手机" clearable></el-input>
+            <el-input
+              v-model="form.phone"
+              placeholder="请输入手机"
+              clearable
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
           <el-form-item label="性别">
-            <el-select v-model="form.sex" placeholder="请选择性别" clearable class="w100">
+            <el-select
+              v-model="form.sex"
+              placeholder="请选择性别"
+              clearable
+              class="w100"
+            >
               <el-option label="男" value="1"></el-option>
               <el-option label="女" value="2"></el-option>
             </el-select>
@@ -17,12 +31,20 @@
         </el-col>
         <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
           <el-form-item label="登录密码" prop="password">
-            <el-input v-model="form.password" placeholder="请输入登录密码" clearable></el-input>
+            <el-input
+              v-model="form.password"
+              placeholder="请输入登录密码"
+              clearable
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
           <el-form-item label="权限角色" prop="auth">
-            <el-input v-model="form.auth" placeholder="请输入权限角色" clearable></el-input>
+            <el-input
+              v-model="form.auth"
+              placeholder="请输入权限角色"
+              clearable
+            ></el-input>
           </el-form-item>
         </el-col>
       </el-row>

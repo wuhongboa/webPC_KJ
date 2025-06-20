@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
     <div class="header">
-      <el-input v-model="zipName" placeholder="请输入文件名" style="width: 200px; margin-right: 10px" />
+      <el-input
+        v-model="zipName"
+        placeholder="请输入文件名"
+        style="width: 200px; margin-right: 10px"
+      />
       <el-button type="primary" @click="exportExcelAction">
         <el-icon style="margin-right: 6px"><Download /></el-icon>导出 zip
       </el-button>
@@ -9,7 +13,11 @@
     <div class="footer">
       <el-table :data="list" style="width: 100%" border>
         <template v-for="(item, index) in column" :key="index">
-          <el-table-column :prop="item.name" :label="item.label" :width="item.width" />
+          <el-table-column
+            :prop="item.name"
+            :label="item.label"
+            :width="item.width"
+          />
         </template>
       </el-table>
     </div>

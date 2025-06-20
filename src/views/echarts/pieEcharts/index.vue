@@ -40,7 +40,14 @@
     show: true,
     formatter: '{b}:{d}%',
   }
-  const color = ['#03acd1', '#04cab7', '#03c781', '#fce348', '#fc2d8a', '#0292fe']
+  const color = [
+    '#03acd1',
+    '#04cab7',
+    '#03c781',
+    '#fce348',
+    '#fc2d8a',
+    '#0292fe',
+  ]
   let options = {
     // backgroundColor,
     color,

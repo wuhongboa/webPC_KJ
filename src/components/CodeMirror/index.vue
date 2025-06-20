@@ -3,7 +3,14 @@
 </template>
 
 <script>
-  import { defineComponent, onBeforeUnmount, onMounted, ref, toRefs, watch } from 'vue'
+  import {
+    defineComponent,
+    onBeforeUnmount,
+    onMounted,
+    ref,
+    toRefs,
+    watch,
+  } from 'vue'
   // codemirror基础资源引入
   import _CodeMirror from 'codemirror'
   import 'codemirror/lib/codemirror.css'
@@ -54,7 +61,11 @@
       const codeEditor = ref()
       let editor
       watch(modelValue, () => {
-        if (null != editor && modelValue.value && modelValue.value !== editor.getValue()) {
+        if (
+          null != editor &&
+          modelValue.value &&
+          modelValue.value !== editor.getValue()
+        ) {
           // 触发v-model的双向绑定
           editor.setValue(modelValue.value)
         }
@@ -77,7 +88,11 @@
           // 启用代码折叠相关功能:开始
           foldGutter: true,
           lineWrapping: true, //是否自动换行
-          gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers'],
+          gutters: [
+            'CodeMirror-linenumbers',
+            'CodeMirror-foldgutter',
+            'CodeMirror-lint-markers',
+          ],
           // 启用代码折叠相关功能:结束
           styleActiveLine: false, // 光标行高亮
         })

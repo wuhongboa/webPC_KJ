@@ -10,7 +10,13 @@ const autoWidthAction = (val, width = 10) => {
   }
   return width
 }
-export const exportExcel = async ({ column, data, filename, autoWidth, format }) => {
+export const exportExcel = async ({
+  column,
+  data,
+  filename,
+  autoWidth,
+  format,
+}) => {
   // 创建excel
   const workbook = new ExcelJS.Workbook()
   // 设置信息
@@ -46,7 +52,10 @@ export const exportExcel = async ({ column, data, filename, autoWidth, format })
   worksheet.addRows(data)
   // 写入文件
 
-  const uint8Array = format === 'xlsx' ? await workbook.xlsx.writeBuffer() : await workbook.csv.writeBuffer()
+  const uint8Array =
+    format === 'xlsx'
+      ? await workbook.xlsx.writeBuffer()
+      : await workbook.csv.writeBuffer()
 
   const blob = new Blob([uint8Array], { type: 'application/octet-binary' })
   if (window.navigator.msSaveOrOpenBlob) {
@@ -78,10 +87,20 @@ export function addCellStyle(cell, attr) {
     color: { argb: 'ff0000' },
   }
   // eslint-disable-next-line no-param-reassign
-  cell.alignment = { vertical: 'middle', wrapText: true, horizontal: horizontal ?? 'left' }
+  cell.alignment = {
+    vertical: 'middle',
+    wrapText: true,
+    horizontal: horizontal ?? 'left',
+  }
 }
 
-export const exportStyleExcel = async ({ column, data, filename, autoWidth, format }) => {
+export const exportStyleExcel = async ({
+  column,
+  data,
+  filename,
+  autoWidth,
+  format,
+}) => {
   // 创建excel
   const workbook = new ExcelJS.Workbook()
   // 设置信息
@@ -121,9 +140,14 @@ export const exportStyleExcel = async ({ column, data, filename, autoWidth, form
   // 给表头添加背景色。因为表头是第一行，可以通过 getRow(1) 来获取表头这一行
   const headerRow = worksheet.getRow(1)
   // 通过 cell 设置样式，更精准
-  headerRow.eachCell((cell) => addCellStyle(cell, { color: 'dff8ff', fontSize: 12, horizontal: 'left' }))
+  headerRow.eachCell((cell) =>
+    addCellStyle(cell, { color: 'dff8ff', fontSize: 12, horizontal: 'left' }),
+  )
 
-  const uint8Array = format === 'xlsx' ? await workbook.xlsx.writeBuffer() : await workbook.csv.writeBuffer()
+  const uint8Array =
+    format === 'xlsx'
+      ? await workbook.xlsx.writeBuffer()
+      : await workbook.csv.writeBuffer()
 
   const blob = new Blob([uint8Array], { type: 'application/octet-binary' })
   if (window.navigator.msSaveOrOpenBlob) {
@@ -149,7 +173,12 @@ function getColumnNumber(width: number) {
 
 function addData(worksheet, headerKeys, headers, data) {}
 
-export const exportMultiHeaderExcel = ({ column, data, filename, autoWidth }) => {
+export const exportMultiHeaderExcel = ({
+  column,
+  data,
+  filename,
+  autoWidth,
+}) => {
   // 创建excel
   const workbook = new ExcelJS.Workbook()
   // 创建工作表
@@ -219,7 +248,14 @@ export const exportMultiHeaderExcel = ({ column, data, filename, autoWidth }) =>
   })
 }
 
-function mergeColumnCell(headers, rowHeader1, rowHeader2, nameRow1, nameRow2, worksheet) {
+function mergeColumnCell(
+  headers,
+  rowHeader1,
+  rowHeader2,
+  nameRow1,
+  nameRow2,
+  worksheet,
+) {
   // 当前 index 的指针
   let pointer = -1
   nameRow1.forEach((name, index) => {
@@ -231,22 +267,49 @@ function mergeColumnCell(headers, rowHeader1, rowHeader2, nameRow1, nameRow2, wo
     // 是否应该行合并
     const shouldHorizontalMerge = index !== nameRow1.lastIndexOf(name)
 
-    console.log('==', name, nameRow2[index], index, nameRow1.lastIndexOf(name), shouldVerticalMerge, shouldHorizontalMerge)
+    console.log(
+      '==',
+      name,
+      nameRow2[index],
+      index,
+      nameRow1.lastIndexOf(name),
+      shouldVerticalMerge,
+      shouldHorizontalMerge,
+    )
 
     pointer = nameRow1.lastIndexOf(name)
     if (shouldVerticalMerge && shouldHorizontalMerge) {
       // 两个方向都合并
-      worksheet.mergeCells(Number(rowHeader1.number), index + 1, Number(rowHeader2.number), nameRow1.lastIndexOf(name) + 1)
+      worksheet.mergeCells(
+        Number(rowHeader1.number),
+        index + 1,
+        Number(rowHeader2.number),
+        nameRow1.lastIndexOf(name) + 1,
+      )
       console.log('==')
     } else if (shouldVerticalMerge && !shouldHorizontalMerge) {
       // 只在垂直方向上同一列的两行合并
-      worksheet.mergeCells(Number(rowHeader1.number), index + 1, Number(rowHeader2.number), index + 1)
+      worksheet.mergeCells(
+        Number(rowHeader1.number),
+        index + 1,
+        Number(rowHeader2.number),
+        index + 1,
+      )
     } else if (!shouldVerticalMerge && shouldHorizontalMerge) {
       // 只有水平方向同一行的多列合并
-      worksheet.mergeCells(Number(rowHeader1.number), index + 1, Number(rowHeader1.number), nameRow1.lastIndexOf(name) + 1)
+      worksheet.mergeCells(
+        Number(rowHeader1.number),
+        index + 1,
+        Number(rowHeader1.number),
+        nameRow1.lastIndexOf(name) + 1,
+      )
       // eslint-disable-next-line no-param-reassign
       const cell = rowHeader1.getCell(index + 1)
-      cell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true }
+      cell.alignment = {
+        vertical: 'middle',
+        horizontal: 'center',
+        wrapText: true,
+      }
     }
   })
 }

@@ -11,7 +11,11 @@
         class="el-menu-vertical-demo"
         :collapse="isCollapse"
       >
-        <SubItem v-for="route in permission_routes" :key="route.path" :item="route" />
+        <SubItem
+          v-for="route in permission_routes"
+          :key="route.path"
+          :item="route"
+        />
       </el-menu>
     </el-scrollbar>
   </div>

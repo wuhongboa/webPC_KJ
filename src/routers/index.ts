@@ -1,4 +1,10 @@
-import { createRouter, createWebHistory, RouteRecordRaw, createWebHashHistory, Router } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory,
+  RouteRecordRaw,
+  createWebHashHistory,
+  Router,
+} from 'vue-router'
 import Layout from '@/layout/index.vue'
 // 扩展继承属性
 interface extendRoute {
@@ -12,7 +18,6 @@ import nestedRouter from './modules/nested'
 import systemRouter from './modules/system'
 import echartsRouter from './modules/echarts'
 import chatRouter from './modules/chat'
-import othersRouter from './modules/other'
 import externalLink from './modules/externalLink'
 import formRouter from './modules/form'
 import functionPageRouter from './modules/functionPage'
@@ -23,7 +28,6 @@ export const asyncRoutes = [
   ...echartsRouter,
   ...tableRouter,
   ...formRouter,
-  ...othersRouter,
   ...functionPageRouter,
   ...chatRouter,
   ...nestedRouter,

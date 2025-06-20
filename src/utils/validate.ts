@@ -91,7 +91,12 @@ export function isArray(arg) {
  */
 export function verifyPhone(val: string) {
   // false: 手机号码不正确
-  if (!/^((12[0-9])|(13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0|1,5-9]))\d{8}$/.test(val)) return false
+  if (
+    !/^((12[0-9])|(13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0|1,5-9]))\d{8}$/.test(
+      val,
+    )
+  )
+    return false
   // true: 手机号码正确
   else return true
 }
@@ -105,7 +110,10 @@ export function verifyPhone(val: string) {
  */
 export function verifyTextColor(val: string, text = '', color = 'red') {
   // 返回内容，添加颜色
-  const v = text.replace(new RegExp(val, 'gi'), `<span style='color: ${color}'>${val}</span>`)
+  const v = text.replace(
+    new RegExp(val, 'gi'),
+    `<span style='color: ${color}'>${val}</span>`,
+  )
   // 返回结果
   return v
 }
@@ -116,7 +124,8 @@ export function verifyTextColor(val: string, text = '', color = 'red') {
  * @returns 返回 true: 身份证正确
  */
 export function verifyIdCard(val: string) {
-  const regx = /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0\d|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/
+  const regx =
+    /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0\d|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/
   return regx.test(val)
 }
 
@@ -167,7 +176,10 @@ export function verifyEmail(val: string) {
  * @param verifyPhone 验证函数
  * @param message 提示
  */
-export function validatorMethod(verifyPhone: (string) => boolean, message: string) {
+export function validatorMethod(
+  verifyPhone: (string) => boolean,
+  message: string,
+) {
   return (rule, value, callback) => {
     if (!verifyPhone(value)) {
       callback(new Error(message))

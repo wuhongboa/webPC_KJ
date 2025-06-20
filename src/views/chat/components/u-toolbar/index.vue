@@ -5,12 +5,22 @@
         <img src="static/face/emoji-after.png" alt="" style="width: 20px" />
       </div>
       <div class="upload-picture" title="上传图片">
-        <el-upload action multiple :show-file-list="false" :before-upload="beforeUploadAction">
+        <el-upload
+          action
+          multiple
+          :show-file-list="false"
+          :before-upload="beforeUploadAction"
+        >
           <el-icon style="font-size: 20px"><FolderOpened /></el-icon>
         </el-upload>
       </div>
       <div v-show="isShowEmoji" class="emoje-border-wrap">
-        <div v-for="(item, index) in emojis" :key="index" class="title-emoje" @click.stop="selectSigleEmojeAction($event, item)">
+        <div
+          v-for="(item, index) in emojis"
+          :key="index"
+          class="title-emoje"
+          @click.stop="selectSigleEmojeAction($event, item)"
+        >
           <img :src="`static/face/${item}.png`" :title="item" />
         </div>
       </div>

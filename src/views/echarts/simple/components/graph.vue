@@ -28,7 +28,15 @@
       default: '200px',
     },
   })
-  const axisData = ['Mon', 'Tue', 'Wed', 'Very Loooong Thu', 'Fri', 'Sat', 'Sun']
+  const axisData = [
+    'Mon',
+    'Tue',
+    'Wed',
+    'Very Loooong Thu',
+    'Fri',
+    'Sat',
+    'Sun',
+  ]
   const data = axisData.map(function (item, i) {
     return Math.round(Math.random() * 1000 * (i + 1))
   })

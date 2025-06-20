@@ -3,10 +3,15 @@
     <div class="header">
       <el-form ref="ruleFormRef" :inline="true" :model="formInline">
         <el-form-item label="部门名称" prop="username">
-          <el-input v-model="formInline.username" placeholder="请输入部门名称" />
+          <el-input
+            v-model="formInline.username"
+            placeholder="请输入部门名称"
+          />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" :icon="Search" @click="onSubmit">查询</el-button>
+          <el-button type="primary" :icon="Search" @click="onSubmit"
+            >查询</el-button
+          >
           <el-button @click="reset(ruleFormRef)">重置</el-button>
         </el-form-item>
       </el-form>
@@ -19,7 +24,13 @@
         </el-button>
       </div>
       <div class="table-inner">
-        <el-table v-loading="loading" row-key="id" :data="tableData" style="width: 100%" border>
+        <el-table
+          v-loading="loading"
+          row-key="id"
+          :data="tableData"
+          style="width: 100%"
+          border
+        >
           <el-table-column prop="deptName" label="部门名称" align="center" />
           <el-table-column prop="status" label="状态" align="center">
             <template #default="scope">
@@ -32,12 +43,42 @@
               />
             </template>
           </el-table-column>
-          <el-table-column prop="remark" :show-overflow-tooltip="true" width="300" label="备注" align="center" />
-          <el-table-column prop="createTime" label="创建时间" align="center" width="180" />
-          <el-table-column prop="operator" label="操作" width="200px" align="center">
+          <el-table-column
+            prop="remark"
+            :show-overflow-tooltip="true"
+            width="300"
+            label="备注"
+            align="center"
+          />
+          <el-table-column
+            prop="createTime"
+            label="创建时间"
+            align="center"
+            width="180"
+          />
+          <el-table-column
+            prop="operator"
+            label="操作"
+            width="200px"
+            align="center"
+          >
             <template #default="scope">
-              <el-button type="primary" size="small" icon="Edit" @click="editHandler(scope.row)"> 编辑 </el-button>
-              <el-button type="danger" size="small" icon="Delete" @click="del(scope.row)"> 删除 </el-button>
+              <el-button
+                type="primary"
+                size="small"
+                icon="Edit"
+                @click="editHandler(scope.row)"
+              >
+                编辑
+              </el-button>
+              <el-button
+                type="danger"
+                size="small"
+                icon="Delete"
+                @click="del(scope.row)"
+              >
+                删除
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -99,11 +140,15 @@
       .catch(() => {})
   }
   const changeStatus = (row) => {
-    ElMessageBox.confirm(`确定要${!row.status ? '禁用' : '启用'} ${row.deptName} 账户吗？`, '温馨提示', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning',
-    })
+    ElMessageBox.confirm(
+      `确定要${!row.status ? '禁用' : '启用'} ${row.deptName} 账户吗？`,
+      '温馨提示',
+      {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      },
+    )
       .then(async () => {})
       .catch(() => {
         row.status = !row.status

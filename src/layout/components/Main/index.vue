@@ -3,7 +3,10 @@
     <router-view v-slot="{ Component, route }">
       <transition name="fade-slide" mode="out-in" appear>
         <keep-alive v-if="isReload" :include="cacheRoutes">
-          <component :is="useWrapComponents(Component, route)" :key="route.path" />
+          <component
+            :is="useWrapComponents(Component, route)"
+            :key="route.path"
+          />
         </keep-alive>
       </transition>
     </router-view>

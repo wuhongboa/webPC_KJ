@@ -1,14 +1,29 @@
 <template>
   <div class="app-container">
     <div class="app-container-inner">
-      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="120px" status-icon label-position="top">
+      <el-form
+        ref="ruleFormRef"
+        :model="ruleForm"
+        :rules="rules"
+        label-width="120px"
+        status-icon
+        label-position="top"
+      >
         <el-form-item label="手机号码" prop="phone">
           <el-input v-model="ruleForm.phone" placeholder="请输入手机号码" />
         </el-form-item>
 
-        <el-form-item label="匹配文字变色（搜索时）" prop="keyword" class="item-form">
+        <el-form-item
+          label="匹配文字变色（搜索时）"
+          prop="keyword"
+          class="item-form"
+        >
           <div>示例：<span v-html="keyword"></span></div>
-          <el-input v-model="ruleForm.keyword" placeholder="请输入关键字" @input="onVerifyKeywordColor" />
+          <el-input
+            v-model="ruleForm.keyword"
+            placeholder="请输入关键字"
+            @input="onVerifyKeywordColor"
+          />
         </el-form-item>
 
         <el-form-item label="身份证" prop="idCard" class="item-form">

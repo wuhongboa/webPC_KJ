@@ -24,9 +24,14 @@
       </el-scrollbar>
     </div>
 
-    <div class="layout-columns-sub" :style="{ width: isCollapse ? '60px' : '210px' }">
+    <div
+      class="layout-columns-sub"
+      :style="{ width: isCollapse ? '60px' : '210px' }"
+    >
       <div class="logo flex-center">
-        <span v-show="subMenus.length">{{ isCollapse ? 'Vue' : 'Vue Admin Perfect' }}</span>
+        <span v-show="subMenus.length">{{
+          isCollapse ? 'Vue' : 'Vue Admin Perfect'
+        }}</span>
       </div>
       <el-scrollbar>
         <el-menu
@@ -96,7 +101,9 @@
       if (!menusRoutes.value.length) return
       const [firstMenu] = route.matched
       activeCurrentMenu.value = firstMenu.path
-      let menuItem = menusRoutes.value.find((item) => firstMenu.path === item.path)
+      let menuItem = menusRoutes.value.find(
+        (item) => firstMenu.path === item.path,
+      )
       if (menuItem && menuItem.children?.length) {
         subMenus.value = menuItem.children
       } else {

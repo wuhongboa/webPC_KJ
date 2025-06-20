@@ -1,8 +1,19 @@
 <template>
   <el-dialog v-model="dialogVisible" :title="title" width="50%" @close="close">
-    <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="100px">
+    <el-form
+      ref="ruleFormRef"
+      :model="ruleForm"
+      :rules="rules"
+      label-width="100px"
+    >
       <el-form-item label="所属字典" prop="pid">
-        <el-cascader v-model="ruleForm.pid" style="width: 100%" :options="dictionaryData" :props="cascaderProps" clearable />
+        <el-cascader
+          v-model="ruleForm.pid"
+          style="width: 100%"
+          :options="dictionaryData"
+          :props="cascaderProps"
+          clearable
+        />
       </el-form-item>
       <el-form-item label="字典项名称" prop="name">
         <el-input v-model="ruleForm.name" placeholder="请输入字典项名称" />
@@ -11,13 +22,19 @@
         <el-input v-model="ruleForm.key" placeholder="请输入字典项键值" />
       </el-form-item>
       <el-form-item label="字典项描述" prop="remark">
-        <el-input v-model="ruleForm.remark" type="textarea" placeholder="请输入字典项描述" />
+        <el-input
+          v-model="ruleForm.remark"
+          type="textarea"
+          placeholder="请输入字典项描述"
+        />
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="handleClose(ruleFormRef)">确定</el-button>
+        <el-button type="primary" @click="handleClose(ruleFormRef)"
+          >确定</el-button
+        >
       </span>
     </template>
   </el-dialog>

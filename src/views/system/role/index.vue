@@ -1,12 +1,22 @@
 <template>
   <div class="app-container">
     <div class="header">
-      <el-form ref="ruleFormRef" :inline="true" :model="formInline" class="demo-form-inline">
+      <el-form
+        ref="ruleFormRef"
+        :inline="true"
+        :model="formInline"
+        class="demo-form-inline"
+      >
         <el-form-item label="角色名称" prop="roleName">
-          <el-input v-model="formInline.roleName" placeholder="请输入角色名称" />
+          <el-input
+            v-model="formInline.roleName"
+            placeholder="请输入角色名称"
+          />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" :icon="Search" @click="onSubmit">查询</el-button>
+          <el-button type="primary" :icon="Search" @click="onSubmit"
+            >查询</el-button
+          >
           <el-button @click="reset(ruleFormRef)">重置</el-button>
         </el-form-item>
       </el-form>
@@ -19,7 +29,12 @@
         </el-button>
       </div>
       <div class="table-inner">
-        <el-table v-loading="loading" :data="tableData" style="width: 100%" border>
+        <el-table
+          v-loading="loading"
+          :data="tableData"
+          style="width: 100%"
+          border
+        >
           <el-table-column prop="roleName" label="角色名称" />
           <el-table-column prop="roleIdentification" label="角色标识" />
           <el-table-column prop="status" label="角色状态" align="center">
@@ -33,12 +48,31 @@
               />
             </template>
           </el-table-column>
-          <el-table-column prop="describe" :show-overflow-tooltip="true" width="180" label="角色描述" />
+          <el-table-column
+            prop="describe"
+            :show-overflow-tooltip="true"
+            width="180"
+            label="角色描述"
+          />
           <el-table-column prop="createTime" label="创建时间" />
           <el-table-column prop="status" label="操作" width="180">
             <template #default="scope">
-              <el-button type="primary" size="small" icon="Edit" @click="edit(scope.row)"> 编辑 </el-button>
-              <el-button type="danger" size="small" icon="Delete" @click="del(scope.row)"> 删除 </el-button>
+              <el-button
+                type="primary"
+                size="small"
+                icon="Edit"
+                @click="edit(scope.row)"
+              >
+                编辑
+              </el-button>
+              <el-button
+                type="danger"
+                size="small"
+                icon="Delete"
+                @click="del(scope.row)"
+              >
+                删除
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -96,11 +130,15 @@
   }
 
   const changeStatus = (row) => {
-    ElMessageBox.confirm(`确定要${!row.status ? '禁用' : '启用'} ${row.roleName} 角色吗？`, '温馨提示', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning',
-    })
+    ElMessageBox.confirm(
+      `确定要${!row.status ? '禁用' : '启用'} ${row.roleName} 角色吗？`,
+      '温馨提示',
+      {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      },
+    )
       .then(async () => {})
       .catch(() => {
         row.status = !row.status

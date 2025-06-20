@@ -28,7 +28,15 @@
   ]
 
   let data = []
-  let color = ['#fd566a', '#9787ff', '#fdb36a', '#fdd56a', '#6da7ff', '#63e1f2', '#ff3000']
+  let color = [
+    '#fd566a',
+    '#9787ff',
+    '#fdb36a',
+    '#fdd56a',
+    '#6da7ff',
+    '#63e1f2',
+    '#ff3000',
+  ]
   for (let i = 0; i < trafficWay.length; i++) {
     data.push(
       {

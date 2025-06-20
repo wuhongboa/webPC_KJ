@@ -8,7 +8,15 @@
   import { onMounted, ref, reactive } from 'vue'
   const chartsRef = ref<HTMLElement | null>()
   const data = [154, 230, 224, 218, 135, 147, 260]
-  const color = ['#fa796f', '#54c1fb', '#ca6cd4', '#59dcc1', '#09a4ea', '#e98f4d', '#ea8e49']
+  const color = [
+    '#fa796f',
+    '#54c1fb',
+    '#ca6cd4',
+    '#59dcc1',
+    '#09a4ea',
+    '#e98f4d',
+    '#ea8e49',
+  ]
   const dataOptions = []
 
   data.forEach((item, index) => {

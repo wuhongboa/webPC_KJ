@@ -1,10 +1,19 @@
 <template>
   <div class="app-container">
     <div class="header">
-      <el-input v-model="input" placeholder="请输入文件名" style="width: 200px; margin-right: 10px" />
+      <el-input
+        v-model="input"
+        placeholder="请输入文件名"
+        style="width: 200px; margin-right: 10px"
+      />
       <div>
         <label style="margin-right: 10px">导出格式</label>
-        <el-select v-model="format" class="m-2" placeholder="导出格式" style="width: 200px; margin-right: 10px">
+        <el-select
+          v-model="format"
+          class="m-2"
+          placeholder="导出格式"
+          style="width: 200px; margin-right: 10px"
+        >
           <el-option label="xlsx" value="xlsx" />
           <el-option label="csv" value="csv" />
         </el-select>
@@ -17,7 +26,11 @@
       <div class="footer-inner">
         <el-table :data="list" border class="table">
           <template v-for="(item, index) in column" :key="index">
-            <el-table-column :prop="item.name" :label="item.label" :width="item.width" />
+            <el-table-column
+              :prop="item.name"
+              :label="item.label"
+              :width="item.width"
+            />
           </template>
         </el-table>
       </div>

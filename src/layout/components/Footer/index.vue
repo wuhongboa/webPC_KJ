@@ -1,6 +1,8 @@
 <template>
   <div class="footer-layout">
-    <span href="/" target="_blank"> 2022 © VUE-ADMIN-PERFECT By ZB Technology. </span>
+    <span href="/" target="_blank">
+      2022 © VUE-ADMIN-PERFECT By ZB Technology.
+    </span>
   </div>
 </template>
 

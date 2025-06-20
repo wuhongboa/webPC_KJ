@@ -6,7 +6,9 @@
           <el-input v-model="formInline.username" placeholder="请输入名称" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" :icon="Search" @click="onSubmit">查询</el-button>
+          <el-button type="primary" :icon="Search" @click="onSubmit"
+            >查询</el-button
+          >
           <el-button @click="reset(ruleFormRef)">重置</el-button>
         </el-form-item>
       </el-form>
@@ -19,23 +21,64 @@
         </el-button>
       </div>
       <div class="table-inner">
-        <el-table v-loading="loading" :data="tableData" style="width: 100%; height: 100%" border>
+        <el-table
+          v-loading="loading"
+          :data="tableData"
+          style="width: 100%; height: 100%"
+          border
+        >
           <el-table-column prop="id" label="id" align="center" width="100" />
-          <el-table-column prop="name" label="名称" align="center" width="100" />
+          <el-table-column
+            prop="name"
+            label="名称"
+            align="center"
+            width="100"
+          />
           <el-table-column prop="key" label="键值" align="center" />
-          <el-table-column prop="remark" :show-overflow-tooltip="true" width="180" label="描述" align="center" />
-          <el-table-column prop="createTime" label="创建时间" align="center" width="180" />
-          <el-table-column prop="operator" label="操作" width="200px" align="center" fixed="right">
+          <el-table-column
+            prop="remark"
+            :show-overflow-tooltip="true"
+            width="180"
+            label="描述"
+            align="center"
+          />
+          <el-table-column
+            prop="createTime"
+            label="创建时间"
+            align="center"
+            width="180"
+          />
+          <el-table-column
+            prop="operator"
+            label="操作"
+            width="200px"
+            align="center"
+            fixed="right"
+          >
             <template #default="scope">
-              <el-button type="primary" size="small" icon="Edit" @click="editHandler(scope.row)"> 编辑 </el-button>
-              <el-button type="danger" size="small" icon="Delete" @click="del(scope.row)"> 删除 </el-button>
+              <el-button
+                type="primary"
+                size="small"
+                icon="Edit"
+                @click="editHandler(scope.row)"
+              >
+                编辑
+              </el-button>
+              <el-button
+                type="danger"
+                size="small"
+                icon="Delete"
+                @click="del(scope.row)"
+              >
+                删除
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
       </div>
       <div class="pagination">
         <el-pagination
-          v-model:currentPage="currentPage1"
+          v-model:current-page="currentPage1"
           :page-size="10"
           background
           layout="total, sizes, prev, pager, next, jumper"
@@ -112,11 +155,15 @@
       .catch(() => {})
   }
   const changeStatus = (row) => {
-    ElMessageBox.confirm(`确定要${!row.status ? '禁用' : '启用'} ${row.username} 账户吗？`, '温馨提示', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning',
-    })
+    ElMessageBox.confirm(
+      `确定要${!row.status ? '禁用' : '启用'} ${row.username} 账户吗？`,
+      '温馨提示',
+      {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      },
+    )
       .then(async () => {})
       .catch(() => {
         row.status = !row.status

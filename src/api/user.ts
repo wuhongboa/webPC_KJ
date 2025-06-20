@@ -13,5 +13,6 @@ enum URL {
   LOGIN = '/vue-element-perfect/user/login',
   LOGOUT = '/user/logout',
 }
-export const login = async (data: LoginData) => post<any>({ url: URL.LOGIN, data })
+export const login = async (data: LoginData) =>
+  post<any>({ url: URL.LOGIN, data })
 export const logout = async () => post<LoginRes>({ url: URL.LOGOUT })

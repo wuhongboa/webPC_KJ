@@ -1,6 +1,11 @@
 <template>
   <div class="m-wangEditor">
-    <Toolbar style="border-bottom: 1px solid #ccc" :editor="editorRef" :default-config="toolbarConfig" :mode="mode" />
+    <Toolbar
+      style="border-bottom: 1px solid #ccc"
+      :editor="editorRef"
+      :default-config="toolbarConfig"
+      :mode="mode"
+    />
     <Editor
       v-model="valueHtml"
       class="editor-content'"
@@ -15,7 +20,14 @@
   // 引入 wangEditor
   import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
   import '@wangeditor/editor/dist/css/style.css' // 引入 css
-  import { onBeforeUnmount, onMounted, watch, shallowRef, ref, computed } from 'vue'
+  import {
+    onBeforeUnmount,
+    onMounted,
+    watch,
+    shallowRef,
+    ref,
+    computed,
+  } from 'vue'
   let editors = null
   // 编辑器实例，必须用 shallowRef
   const editorRef = shallowRef()

@@ -21,19 +21,25 @@
           @selection-change="(val) => emit('selection-change', val)"
         >
           <template v-for="item in columns">
-            <el-table-column v-if="item.slot" v-bind="{ ...item, ...{ prop: item.name } }">
+            <el-table-column
+              v-if="item.slot"
+              v-bind="{ ...item, ...{ prop: item.name } }"
+            >
               <template #default="scope">
                 <slot :name="item.name" :item="item" :row="scope.row"></slot>
               </template>
             </el-table-column>
-            <el-table-column v-else v-bind="{ ...item, ...{ prop: item.name } }" />
+            <el-table-column
+              v-else
+              v-bind="{ ...item, ...{ prop: item.name } }"
+            />
           </template>
         </el-table>
       </div>
       <!-- ------------分页--------------->
       <div class="pagination">
         <el-pagination
-          v-model:currentPage="pagination.currentPage"
+          v-model:current-page="pagination.currentPage"
           :page-size="10"
           background
           layout="total, sizes, prev, pager, next, jumper"

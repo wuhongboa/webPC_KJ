@@ -1,21 +1,31 @@
 <template>
   <template v-if="!item.hidden">
-    <template v-if="!item.alwaysShow && hasOneShowingChild(item.children, item)">
+    <template
+      v-if="!item.alwaysShow && hasOneShowingChild(item.children, item)"
+    >
       <app-link v-if="onlyOneChild.meta" :to="onlyOneChild.path">
         <el-menu-item :index="onlyOneChild.path">
           <el-icon :size="20">
             <component :is="onlyOneChild?.meta.icon"></component>
           </el-icon>
-          <template #title>{{ onlyOneChild.meta && onlyOneChild.meta.title }}</template>
+          <template #title>{{
+            onlyOneChild.meta && onlyOneChild.meta.title
+          }}</template>
         </el-menu-item>
       </app-link>
     </template>
     <el-sub-menu v-else :index="item.path" teleported>
       <template #title>
-        <el-icon :size="20"> <component :is="item.meta?.icon"></component></el-icon>
+        <el-icon :size="20">
+          <component :is="item.meta?.icon"></component
+        ></el-icon>
         <span>{{ item.meta && item.meta.title }}</span>
       </template>
-      <sub-item v-for="child in item.children" :key="child.path" :item="child" />
+      <sub-item
+        v-for="child in item.children"
+        :key="child.path"
+        :item="child"
+      />
     </el-sub-menu>
   </template>
 </template>

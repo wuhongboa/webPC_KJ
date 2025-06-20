@@ -21,7 +21,9 @@ export const useTagsViewStore = defineStore({
     },
     removeView(routes) {
       return new Promise((resolve, reject) => {
-        this.visitedViews = this.visitedViews.filter((item) => !routes.includes(item.path))
+        this.visitedViews = this.visitedViews.filter(
+          (item) => !routes.includes(item.path),
+        )
         resolve(null)
       })
     },
@@ -49,8 +51,11 @@ export const useTagsViewStore = defineStore({
       })
     },
     toLastView(activeTabPath) {
-      const index = this.visitedViews.findIndex((item) => item.path === activeTabPath)
-      const nextTab = this.visitedViews[index + 1] || this.visitedViews[index - 1]
+      const index = this.visitedViews.findIndex(
+        (item) => item.path === activeTabPath,
+      )
+      const nextTab =
+        this.visitedViews[index + 1] || this.visitedViews[index - 1]
       if (!nextTab) return
       router.push(nextTab.path)
       this.addVisitedView(nextTab)

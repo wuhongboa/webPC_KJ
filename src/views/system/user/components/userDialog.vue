@@ -1,6 +1,11 @@
 <template>
   <el-dialog v-model="dialogVisible" :title="title" width="50%" @close="close">
-    <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="100px">
+    <el-form
+      ref="ruleFormRef"
+      :model="ruleForm"
+      :rules="rules"
+      label-width="100px"
+    >
       <el-form-item label="用户名" prop="username">
         <el-input v-model="ruleForm.username" placeholder="请输入用户名" />
       </el-form-item>
@@ -14,7 +19,11 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="关联角色" prop="role">
-        <el-select v-model="ruleForm.role" placeholder="请选择" style="width: 100%">
+        <el-select
+          v-model="ruleForm.role"
+          placeholder="请选择"
+          style="width: 100%"
+        >
           <el-option :key="0" label="超级管理员" value="超级管理员"></el-option>
           <el-option :key="1" label="管理员" value="管理员"></el-option>
           <el-option :key="2" label="普通用户" value="普通用户"></el-option>
@@ -24,19 +33,35 @@
         <el-input v-model="ruleForm.photo" placeholder="请输入手机号" />
       </el-form-item>
       <el-form-item label="账户密码">
-        <el-input v-model="ruleForm.password" placeholder="请输入账户密码,如果不输入默认123456" type="password" clearable />
+        <el-input
+          v-model="ruleForm.password"
+          placeholder="请输入账户密码,如果不输入默认123456"
+          type="password"
+          clearable
+        />
       </el-form-item>
       <el-form-item label="用户状态">
-        <el-switch v-model="ruleForm.status" inline-prompt active-text="启用" inactive-text="禁用"></el-switch>
+        <el-switch
+          v-model="ruleForm.status"
+          inline-prompt
+          active-text="启用"
+          inactive-text="禁用"
+        ></el-switch>
       </el-form-item>
       <el-form-item label="用户描述" prop="describe">
-        <el-input v-model="ruleForm.describe" type="textarea" placeholder="请输入用户描述" />
+        <el-input
+          v-model="ruleForm.describe"
+          type="textarea"
+          placeholder="请输入用户描述"
+        />
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="handleClose(ruleFormRef)">确定</el-button>
+        <el-button type="primary" @click="handleClose(ruleFormRef)"
+          >确定</el-button
+        >
       </span>
     </template>
   </el-dialog>

@@ -3,20 +3,39 @@
     <div class="title">字典管理</div>
 
     <el-button type="primary" @click="addDictsort">
-      <el-icon color="#fff"><Plus /></el-icon><span style="margin-left: 8px">添加字典分类</span>
+      <el-icon color="#fff"><Plus /></el-icon
+      ><span style="margin-left: 8px">添加字典分类</span>
     </el-button>
 
-    <el-input v-model="filterText" placeholder="输入关键字进行过滤" class="filter-search" />
+    <el-input
+      v-model="filterText"
+      placeholder="输入关键字进行过滤"
+      class="filter-search"
+    />
 
     <div class="filter-tree">
       <el-scrollbar class="scrollbar">
-        <el-tree ref="treeRef" :data="tableData" :props="defaultProps" default-expand-all :filter-node-method="filterNode">
+        <el-tree
+          ref="treeRef"
+          :data="tableData"
+          :props="defaultProps"
+          default-expand-all
+          :filter-node-method="filterNode"
+        >
           <template #default="{ node, data }">
             <span class="custom-tree-node" @click="selectAction(node, data)">
               <span>{{ node.label }}</span>
               <span v-if="data.id != null">
-                <el-button type="primary" link @click.stop="editDictsort(data)">编辑</el-button>
-                <el-button style="margin-left: 6px" type="danger" link @click.stop="remove(node, data)">删除</el-button>
+                <el-button type="primary" link @click.stop="editDictsort(data)"
+                  >编辑</el-button
+                >
+                <el-button
+                  style="margin-left: 6px"
+                  type="danger"
+                  link
+                  @click.stop="remove(node, data)"
+                  >删除</el-button
+                >
               </span>
             </span>
           </template>

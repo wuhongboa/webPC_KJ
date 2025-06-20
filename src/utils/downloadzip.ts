@@ -48,7 +48,15 @@ export interface ITableHeader {
 export interface IStyleAttr {
   color?: string
   fontSize?: number
-  horizontal?: 'fill' | 'distributed' | 'justify' | 'center' | 'left' | 'right' | 'centerContinuous' | undefined
+  horizontal?:
+    | 'fill'
+    | 'distributed'
+    | 'justify'
+    | 'center'
+    | 'left'
+    | 'right'
+    | 'centerContinuous'
+    | undefined
   bold?: boolean
 }
 
@@ -63,7 +71,9 @@ export const DEFAULT_ROW_HEIGHT = 20
 export async function downloadFiles2Zip(params: IDownloadFiles2Zip) {
   const zip = new JsZip()
   // 待每个文件都写入完之后再生成 zip 文件
-  const promises = params?.files?.map(async (param) => await handleEachFile(param, zip, ''))
+  const promises = params?.files?.map(
+    async (param) => await handleEachFile(param, zip, ''),
+  )
   await Promise.all(promises)
   zip.generateAsync({ type: 'blob' }).then((blob) => {
     saveAs(blob, `${params.zipName}.zip`)
@@ -74,9 +84,13 @@ export async function downloadFiles2Zip(params: IDownloadFiles2Zip) {
  * 导出支持多级文件夹的压缩包
  * @param params
  */
-export async function downloadFiles2ZipWithFolder(params: IDownloadFiles2ZipWithFolder) {
+export async function downloadFiles2ZipWithFolder(
+  params: IDownloadFiles2ZipWithFolder,
+) {
   const zip = new JsZip()
-  const outPromises = params?.folders?.map(async (folder) => await handleFolder(zip, folder))
+  const outPromises = params?.folders?.map(
+    async (folder) => await handleFolder(zip, folder),
+  )
   await Promise.all(outPromises)
   zip.generateAsync({ type: 'blob' }).then((blob) => {
     saveAs(blob, `${params.zipName}.zip`)
@@ -86,11 +100,17 @@ export async function downloadFiles2ZipWithFolder(params: IDownloadFiles2ZipWith
 async function handleFolder(zip: JsZip, folder: IFolder) {
   console.log({ folder })
   const folderPromises: Promise<any>[] = []
-  const promises = folder?.files?.map(async (param) => await handleEachFile(param, zip, folder.folderName))
+  const promises = folder?.files?.map(
+    async (param) => await handleEachFile(param, zip, folder.folderName),
+  )
   await Promise.all([...promises, ...folderPromises])
 }
 
-async function handleEachFile(param: IDownloadExcel, zip: JsZip, folderName: string) {
+async function handleEachFile(
+  param: IDownloadExcel,
+  zip: JsZip,
+  folderName: string,
+) {
   // 创建工作簿
   const workbook = new ExcelJs.Workbook()
   param?.sheets?.forEach((sheet) => handleEachSheet(workbook, sheet))
@@ -122,7 +142,9 @@ export function handleHeader(worksheet: Worksheet) {
   const headerRow = worksheet.getRow(1)
   headerRow.height = 22
   // 通过 cell 设置样式，更精准
-  headerRow.eachCell((cell) => addCellStyle(cell, { color: 'dff8ff', fontSize: 12, horizontal: 'left' }))
+  headerRow.eachCell((cell) =>
+    addCellStyle(cell, { color: 'dff8ff', fontSize: 12, horizontal: 'left' }),
+  )
 }
 
 export function handleData(worksheet: Worksheet, sheet: ISheet) {
@@ -212,7 +234,10 @@ export function generateHeaders(columns: any[]) {
       // 用于数据匹配的 key
       key: col.name,
       // 列宽
-      width: col.width / 5 > DEFAULT_COLUMN_WIDTH ? col.width / 5 : DEFAULT_COLUMN_WIDTH,
+      width:
+        col.width / 5 > DEFAULT_COLUMN_WIDTH
+          ? col.width / 5
+          : DEFAULT_COLUMN_WIDTH,
     }
     if (col.children) {
       obj.children = col.children?.map((item: any) => ({
@@ -246,7 +271,11 @@ export function addCellStyle(cell: Cell, attr?: IStyleAttr) {
     name: '微软雅黑',
   }
   // eslint-disable-next-line no-param-reassign
-  cell.alignment = { vertical: 'middle', wrapText: true, horizontal: horizontal ?? 'left' }
+  cell.alignment = {
+    vertical: 'middle',
+    wrapText: true,
+    horizontal: horizontal ?? 'left',
+  }
 }
 
 export function addHeaderStyle(row: Row, attr?: IStyleAttr) {

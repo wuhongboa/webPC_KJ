@@ -1,5 +1,9 @@
 <template>
-  <div v-if="device === 'mobile' && !isCollapse" class="drawer-bg" @click="handleClickOutside" />
+  <div
+    v-if="device === 'mobile' && !isCollapse"
+    class="drawer-bg"
+    @click="handleClickOutside"
+  />
 </template>
 
 <script lang="ts" setup>

@@ -42,7 +42,10 @@ export const useFullscreen = () => {
    */
   const isElementFullScreen = () => {
     const fullscreenElement =
-      document.fullscreenElement || document.msFullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement
+      document.fullscreenElement ||
+      document.msFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.webkitFullscreenElement
     if (fullscreenElement === null) {
       return false // 当前没有元素在全屏状态
     } else {
@@ -55,16 +58,19 @@ export const useFullscreen = () => {
    * @param {String} domName 要全屏的dom名称
    */
   const Fullscreen = (target) => {
-    const targetRef = target || (document == null ? void 0 : document.querySelector('html'))
+    const targetRef =
+      target || (document == null ? void 0 : document.querySelector('html'))
     const { prefixName } = isFullscreen()
-    const methodName = prefixName === '' ? 'requestFullscreen' : `${prefixName}RequestFullScreen`
+    const methodName =
+      prefixName === '' ? 'requestFullscreen' : `${prefixName}RequestFullScreen`
     targetRef[methodName]()
   }
 
   // 退出全屏
   const exitFullscreen = () => {
     const { prefixName } = isFullscreen()
-    const methodName = prefixName === '' ? 'exitFullscreen' : `${prefixName}ExitFullscreen`
+    const methodName =
+      prefixName === '' ? 'exitFullscreen' : `${prefixName}ExitFullscreen`
     document[methodName]()
   }
 

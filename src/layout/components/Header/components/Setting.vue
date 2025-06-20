@@ -1,7 +1,9 @@
 <template>
   <div class="m-setting">
     <el-tooltip effect="dark" content="主题设置" placement="bottom">
-      <el-icon style="font-size: 20px" class="bell header-icon"><Setting @click="changeSwitch('showSetting', true)" /></el-icon>
+      <el-icon style="font-size: 20px" class="bell header-icon"
+        ><Setting @click="changeSwitch('showSetting', true)"
+      /></el-icon>
     </el-tooltip>
   </div>
 </template>

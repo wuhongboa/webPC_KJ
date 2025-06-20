@@ -1,8 +1,17 @@
 <template>
   <div class="app-container">
     <div class="app-container-inner">
-      <el-form ref="formRef" :model="dynamicValidateForm" label-width="120px" class="demo-dynamic">
-        <el-row v-for="(domain, index) in dynamicValidateForm.domains" :key="domain.key" :gutter="20">
+      <el-form
+        ref="formRef"
+        :model="dynamicValidateForm"
+        label-width="120px"
+        class="demo-dynamic"
+      >
+        <el-row
+          v-for="(domain, index) in dynamicValidateForm.domains"
+          :key="domain.key"
+          :gutter="20"
+        >
           <el-col :span="10">
             <el-form-item
               :label="'Domain' + index"
@@ -40,7 +49,9 @@
         </el-row>
 
         <el-form-item>
-          <el-button type="primary" @click="submitForm(formRef)">Submit</el-button>
+          <el-button type="primary" @click="submitForm(formRef)"
+            >Submit</el-button
+          >
           <el-button @click="resetForm(formRef)">Reset</el-button>
         </el-form-item>
       </el-form>
@@ -91,7 +102,9 @@
     if (!formEl) return
     formEl.validate((valid) => {
       if (valid) {
-        ElMessage.success(`提交数据: ${JSON.stringify(dynamicValidateForm.domains)}`)
+        ElMessage.success(
+          `提交数据: ${JSON.stringify(dynamicValidateForm.domains)}`,
+        )
         console.log('submit!', dynamicValidateForm.domains)
       } else {
         console.log('error submit!')
