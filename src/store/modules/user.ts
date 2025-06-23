@@ -1,8 +1,14 @@
+/*
+ * @Author: wuhongboa 1679462735@qq.com
+ * @Date: 2025-06-19 13:59:14
+ * @LastEditors: wuhongboa 1679462735@qq.com
+ * @LastEditTime: 2025-06-23 14:29:58
+ * @FilePath: \newGit\src\store\modules\user.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { defineStore } from 'pinia'
 
-export const useUserStore = defineStore({
-  // id: 必须的，在所有 Store 中唯一
-  id: 'userState',
+export const useUserStore = defineStore('userState', {
   // state: 返回对象的函数
   state: () => ({
     // 登录token

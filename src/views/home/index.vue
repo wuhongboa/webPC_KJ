@@ -87,7 +87,6 @@
     player.initPlayer()
   }
   const switchVideo = () => {
-    debugger
     let player = vVideoPlayerRef.value.getVueInstance()
     player.switchVideo()
     videoOption.status = !player.pause
