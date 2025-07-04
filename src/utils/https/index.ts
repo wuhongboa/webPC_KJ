@@ -63,10 +63,8 @@ const request = <T = any>(config: AxiosRequestConfig): Promise<T> => {
     service
       .request<any, AxiosResponse<IResponse>>(conf)
       .then((res: AxiosResponse<IResponse>) => {
-        const {
-          data: { result },
-        } = res
-        resolve(result as T)
+        const { data } = res
+        resolve(data as T)
       })
   })
 }

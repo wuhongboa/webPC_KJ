@@ -71,6 +71,10 @@
       type: Boolean,
       default: false,
     },
+    // height: {
+    //   type: String || Number,
+    //   default: 200,
+    // },
   })
 
   // 过滤调需要进行搜索选择的
@@ -123,6 +127,7 @@
   const formInline = reactive(obj)
 
   const onSubmit = () => {
+    debugger
     emit('onSubmit', formInline)
   }
 

@@ -2,7 +2,7 @@
  * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
  * @Date: 2025-06-16 17:28:55
  * @LastEditors: wuhongboa 1679462735@qq.com
- * @LastEditTime: 2025-06-20 11:02:19
+ * @LastEditTime: 2025-06-30 17:35:57
  * @FilePath: \zb-admin\src\views\other\textClamp\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -16,7 +16,7 @@
           live
           muted
           autoplay
-          has-audio="false"
+          :has-audio="false"
           :video-url="videoOption.videoUrl"
         ></easy-player>
       </div>
@@ -55,11 +55,17 @@
         </div>
       </div>
     </div>
+    <div>
+      <el-button type="primary" @click="handleSave">保存</el-button>
+    </div>
+    <!-- <EasyPlayer :videoUrl="urlList[1]"></EasyPlayer> -->
   </PageWrapLayout>
 </template>
 
 <script lang="ts" setup name="Home">
   import { reactive, ref } from 'vue'
+  // import EasyPlayer from '@/components/EasyPlayer/index.vue'
+  import { userSave } from '@/api/user'
   interface videoOptionFace {
     videoUrl: string
     hasAudio: boolean
@@ -94,6 +100,15 @@
 
   const handleClickUrl = (url) => {
     videoOption.videoUrl = url
+  }
+  const handleSave = () => {
+    let params = {
+      name: '李四',
+      age: 19,
+    }
+    userSave(params).then((res) => {
+      console.log(res)
+    })
   }
 </script>
 
