@@ -35,7 +35,7 @@ module.exports = {
   },
   rules: {
     // 'no-console': 'off', // 禁止调用console对象的方法。
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+    'no-debugger': 'off',
     '@typescript-eslint/no-explicit-any': 'off', // 禁止使用 any 类型
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
@@ -52,7 +52,7 @@ module.exports = {
     'no-sparse-arrays': 'off',
     'vue/valid-v-for': 'off',
     'vue/no-unused-vars': 'off',
-    'vue/require-v-for-key': 'off',
+    'vue/require-v-for-key': 'error',
     'no-useless-escape': 'off',
     'vue/require-explicit-emits': 'off',
     'no-case-declarations': 'off', // 不允许在 case 子句中使用词法声明
@@ -63,6 +63,7 @@ module.exports = {
     'no-async-promise-executor': 'off',
     'vue/no-template-shadow': 'off',
     'vue/require-default-prop': 'off', // 此规则要求为每个 prop 为必填时，必须提供默认值
+    'vue/attribute-hyphenation': 'off', // 关闭属性名必须短横线命名的强制要求
     '@typescript-eslint/no-unused-vars': [
       // // 禁止定义未使用的变量
       'off',

@@ -1,8 +1,8 @@
 <!--
  * @Author: wuhongboa 1679462735@qq.com
  * @Date: 2025-07-01 10:09:53
- * @LastEditors: wuhongboa 1679462735@qq.com
- * @LastEditTime: 2025-07-04 15:44:33
+ * @LastEditors: wuhongbo 1679462735@qq.com
+ * @LastEditTime: 2025-07-16 18:05:57
  * @FilePath: \newGit\src\views\system\user\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -10,71 +10,23 @@
   <PageWrapLayout>
     <PropTable
       :loading="loading"
-      :columns="baseColumns"
-      :data="list"
+      :columns="tableColumns"
+      :table-data="list"
+      :total="list.length"
       @selection-change="selectionChange"
       @reset="reset"
-      @on-submit="onSubmit"
+      @search="handleSearch"
     >
       <template #btn>
         <div style="display: flex; justify-content: flex-end">
           <el-button type="primary" icon="plus" @click="add">添加</el-button>
-          <el-button type="primary" icon="Edit" @click="edit">修改</el-button>
-          <el-button type="danger" icon="delete" @click="batchDelete"
-            >删除</el-button
-          >
           <el-button type="primary" icon="AlarmClock" @click="handleTime"
             >时间</el-button
           >
         </div>
       </template>
-      <!-- <template #sex="scope">{{ scope.row.sex ? '男' : '女' }}</template> -->
-      <template #operation="scope">
-        <el-button
-          type="primary"
-          size="small"
-          icon="Edit"
-          @click="edit(scope.row)"
-        >
-          编辑
-        </el-button>
-        <el-button
-          type="danger"
-          size="small"
-          icon="Delete"
-          @click="del(scope.row)"
-        >
-          删除
-        </el-button>
-      </template>
     </PropTable>
-    <el-dialog v-model="dialogVisible" title="新增" width="30%" draggable>
-      <el-form
-        ref="saveFormRef"
-        :model="userForm"
-        :rules="rules"
-        label-width="80px"
-        class="user-ruleForm"
-      >
-        <el-form-item label="姓名" prop="name">
-          <el-input v-model="userForm.name" />
-        </el-form-item>
-        <el-form-item label="年龄" prop="age">
-          <el-input v-model="userForm.age" />
-        </el-form-item>
-        <el-form-item label="邮箱" prop="email">
-          <el-input v-model="userForm.email" />
-        </el-form-item>
-      </el-form>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="dialogVisible = false">取消</el-button>
-          <el-button type="primary" :loading="saveLoding" @click="handleSave">
-            提交
-          </el-button>
-        </span>
-      </template>
-    </el-dialog>
+    <AddOrEdit ref="addOrEditRef" @submit="handleSubmit"></AddOrEdit>
     <Time ref="timeRef"></Time>
   </PageWrapLayout>
 </template>
@@ -83,74 +35,56 @@
   import { ref, reactive, onMounted } from 'vue'
   import PropTable from '@/components/Table/PropTable/index.vue'
   import Time from './components/time.vue'
-  import { columns } from './indexColumns'
-  import { UserForm } from './type'
-  import { userSave, getUserList } from '@/api/user'
-  import type { FormInstance, FormRules } from 'element-plus'
+  import AddOrEdit from './components/addOrEdit.vue'
+  import { getTableColumns } from './indexColumns'
+  import { getUserList } from '@/api/user'
+  import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
   const loading = ref(false)
-  const saveLoding = ref(false)
-  const baseColumns = reactive(columns)
-  const list = ref()
-  const selectionChange = () => {}
+  // const baseColumns = reactive(columns)
+  const list = ref([])
+  const title = ref('新增')
+  const selectRowData = ref()
+
+  const editFun = (row: any) => {
+    title.value = '编辑'
+    addOrEditRef.value.show({ title: title.value, row: row })
+    // 实际业务逻辑...
+  }
+
+  const deleteFun = (row: any) => {
+    console.log('删除行', row)
+    // 实际业务逻辑...
+  }
+
+  // 动态生成 columns（传入父组件方法）
+  const tableColumns = getTableColumns({
+    editFun,
+    deleteFun,
+  })
+
+  const selectionChange = (val) => {
+    selectRowData.value = val
+  }
   const reset = () => {}
-  const onSubmit = (val) => {
+  const handleSearch = (val) => {
     console.log(val)
   }
 
-  const batchDelete = () => {}
-  const del = (row) => {}
   const getUsers = () => {
+    loading.value = true
     getUserList().then((res) => {
+      loading.value = false
       list.value = res
     })
   }
-
-  const dialogVisible = ref<boolean>(false)
-  const userForm = reactive<UserForm>({
-    name: '',
-    age: '',
-    email: '',
-  })
-  const rules = reactive<FormRules<UserForm>>({
-    name: [
-      {
-        required: true,
-        message: '请输入姓名',
-        trigger: 'blur',
-      },
-      { min: 3, max: 5, message: '', trigger: 'blur' },
-    ],
-    age: [
-      {
-        required: true,
-        message: '请输入年龄',
-        trigger: 'blur',
-      },
-    ],
-    email: {},
-  })
+  const addOrEditRef = ref()
   const add = () => {
-    dialogVisible.value = true
+    title.value = '新增'
+    addOrEditRef.value.show({ title: title.value })
   }
-  const handleSave = () => {
-    console.log(userForm)
-    let params = {
-      name: userForm.name,
-      age: userForm.age,
-      email: userForm.email,
-    }
-    saveLoding.value = true
-    userSave(params)
-      .then((res) => {
-        list.value = res
-        dialogVisible.value = false
-      })
-      .finally(() => {
-        saveLoding.value = false
-      })
+  const handleSubmit = () => {
+    getUsers()
   }
-  const edit = (row) => {}
-
   const timeRef = ref(null)
   const handleTime = () => {
     timeRef.value.show()

@@ -6,7 +6,7 @@
         <div class="date">{{ timeDate }} {{ hourTime }} </div>
       </div>
       <div class="center">
-        <div v-for="item in 5" class="item">
+        <div v-for="item in 5" :key="item" class="item">
           <div class="item-icon item-icon1">
             <img src="@/assets/image/circle-bg.png" class="circle-bg" />
           </div>

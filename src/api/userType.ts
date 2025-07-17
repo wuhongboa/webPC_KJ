@@ -28,3 +28,10 @@ export interface UserListInster {
   name?: string
   age?: number
 }
+
+export interface UserUpdateInster {
+  id: string
+  name: string
+  age: string | number
+  emali?: string
+}
