@@ -22,12 +22,16 @@ interface extendRoute {
 import dataScreenRouter from './modules/dataScreen'
 import functionPageRouter from './modules/functionPage'
 import systemRouter from './modules/system'
+import domRouter from './modules/dom'
+import dataScreenNewRouter from './modules/dataScreenNew'
 
 // 异步组件
 export const asyncRoutes = [
   ...dataScreenRouter,
+  ...dataScreenNewRouter,
   ...functionPageRouter,
   ...systemRouter,
+  ...domRouter,
 ]
 
 /**

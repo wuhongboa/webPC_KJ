@@ -35,3 +35,6 @@ export interface UserUpdateInster {
   age: string | number
   emali?: string
 }
+export interface DeleteInster {
+  id: string
+}

@@ -4,6 +4,7 @@ import router from './routers'
 import pinia from './store'
 import '@/styles/index.scss' // 全局样式
 
+//rem相关
 import { registerElIcons } from '@/plugins/ElIcons'
 // 引入全局组件布局
 import PageWrapLayout from '@/components/PageWrapLayout/index.vue'
@@ -32,3 +33,31 @@ app.component('PageWrapLayout', PageWrapLayout)
 app.use(pinia)
 app.use(router)
 app.use(ElementPlus).mount('#app')
+
+// 设置根字体大小
+function setRem() {
+  // 设计稿宽度（根据你的设计稿尺寸调整）
+  const designWidth = 1920
+  // 最大宽度限制（可选）
+  const maxWidth = 2560
+
+  // 获取视口宽度
+  let clientWidth = document.documentElement.clientWidth
+
+  // 限制最大宽度
+  if (clientWidth > maxWidth) {
+    clientWidth = maxWidth
+  }
+
+  // 计算 rem 基准值（这里设置为设计稿宽度的 1/10，即 1rem = 192px @ 1920px）
+  const rem = (clientWidth * 10) / designWidth
+
+  // 设置根字体大小
+  document.documentElement.style.fontSize = rem + 'px'
+}
+
+// 初始化
+setRem()
+
+// 监听窗口变化
+window.addEventListener('resize', setRem)

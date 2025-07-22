@@ -13,6 +13,7 @@ import {
   UserSaveInster,
   UserListInster,
   UserUpdateInster,
+  DeleteInster,
 } from './userType'
 
 enum URL {
@@ -20,6 +21,7 @@ enum URL {
   LOGOUT = '/user/logout',
   USER_SAVE = '/user/save',
   USER_UPDATE = '/user/update',
+  USER_DELETE = '/user/delete',
   GET_USER_List = '/user',
 }
 export const login = async (data: LoginData) =>
@@ -31,3 +33,5 @@ export const getUserList = async (data?: UserListInster) =>
   get<any>({ url: URL.GET_USER_List, data })
 export const userUpdate = async (data: UserUpdateInster) =>
   post<any>({ url: URL.USER_UPDATE, data })
+export const userDelete = async (data: DeleteInster) =>
+  post<any>({ url: URL.USER_DELETE, data })

@@ -40,7 +40,6 @@
   import { getUserList } from '@/api/user'
   import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
   const loading = ref(false)
-  // const baseColumns = reactive(columns)
   const list = ref([])
   const title = ref('新增')
   const selectRowData = ref()
