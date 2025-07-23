@@ -19,6 +19,7 @@
   // 初始化/更新图表
   const initChart = () => {
     if (!chartRef.value) return
+    chartInstance.value?.dispose()
     chartInstance.value = echarts.init(chartRef.value)
     updateChart()
   }
@@ -41,7 +42,9 @@
   watch(() => props.data, updateChart, { deep: true })
 
   // 响应窗口大小变化
-  const resizeChart = () => chartInstance.value?.resize()
+  const resizeChart = () => {
+    chartInstance.value?.resize()
+  }
 
   onMounted(() => {
     initChart()
@@ -52,11 +55,11 @@
     window.removeEventListener('resize', resizeChart)
     chartInstance.value?.dispose()
   })
+
+  // 暴露resize方法
+  defineExpose({
+    resize: resizeChart,
+  })
 </script>
 
-<style scoped>
-  .pie-chart {
-    width: 100%;
-    height: 100%;
-  }
-</style>
+<style scoped></style>

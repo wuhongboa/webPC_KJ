@@ -15,7 +15,7 @@
     // 图表高度
     height: {
       type: String,
-      default: '400px',
+      default: '100%',
     },
     // 图表配置项
     options: {

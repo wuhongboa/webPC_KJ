@@ -21,7 +21,7 @@
         left: '3%',
         textStyle: {
           color: '#fff',
-          fontSize: '1.6rem',
+          // fontSize: '1.6rem',
           fontWeight: '400',
         },
         top: '10%',
@@ -40,7 +40,7 @@
         itemHeight: 10,
         textStyle: {
           color: '#fff',
-          fontSize: '1.2rem',
+          // fontSize: '1.2rem',
           fontWeight: '400',
         },
       },

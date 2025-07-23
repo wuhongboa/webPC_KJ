@@ -2,7 +2,7 @@
   <div class="digital-base">
     <div class="screen-item-header">数字底座</div>
     <div class="digital-base-charts">
-      <BarChart :options="barOptions" />
+      <BarChart :options="barOptions" :height="'100%'" />
       <DigitalBaseChart />
     </div>
   </div>
@@ -20,7 +20,7 @@
       left: '3%',
       textStyle: {
         color: '#fff',
-        fontSize: '1.6rem',
+        // fontSize: '1.6rem',
         fontWeight: '400',
       },
       top: '10%',
@@ -38,7 +38,7 @@
       bottom: 10,
       textStyle: {
         color: '#fff',
-        fontSize: '1.2rem',
+        // fontSize: '1.2rem',
         fontWeight: '400',
       },
     },
@@ -104,12 +104,17 @@
 <style scoped lang="scss">
   .digital-base {
     position: relative;
-    padding: 2.4rem;
+    padding: 24px;
     box-sizing: border-box;
     .digital-base-charts {
       display: grid;
       grid-template-columns: 1fr 2fr; /* 两列布局 */
-      gap: 1.6rem; /* 设置间距 */
+      gap: 16px; /* 设置间距 */
+      height: 100%;
+      // > div {
+      //   width: 100%;
+      //   height: 100%;
+      // }
     }
   }
   .screen-item-header {
@@ -117,9 +122,9 @@
     top: 16px;
     left: 16px;
     color: #fff;
-    font-size: 1.8rem;
-    padding-left: 4.5rem;
-    width: 40rem;
+    font-size: 18px;
+    padding-left: 45px;
+    width: 400px;
     height: 34px;
     background-image: url('@/assets/image/screen_item_header.png');
     background-size: cover;

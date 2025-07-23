@@ -3,13 +3,14 @@
     <div class="screen-item-header">维修保养</div>
 
     <div class="maintenance-charts">
-      <LineChart :options="lineOptions" :height="'100%'" />
+      <LineChart :options="lineOptions" />
       <pie-chart
+        id="maintenancePieChart"
         :data="pieData"
         :options="pieOptions"
         :seriesOption="pieSeriesOption"
       />
-      <BarChart :options="barOptions" />
+      <BarChart :options="barOptions" :height="'100%'" />
     </div>
   </div>
 </template>
@@ -27,7 +28,7 @@
       left: '3%',
       textStyle: {
         color: '#fff',
-        fontSize: '1.6rem',
+        // fontSize: '1.6rem',
         fontWeight: '400',
       },
       top: '15%',
@@ -51,7 +52,7 @@
       data: ['效益', '成本'],
       textStyle: {
         color: '#00c2ff ',
-        fontSize: '1.2rem',
+        // fontSize: '1.2rem',
       },
       itemHeight: 10,
       bottom: 10,
@@ -101,7 +102,7 @@
       left: 'center',
       textStyle: {
         color: '#fff',
-        fontSize: '1.6rem',
+        // fontSize: '1.6rem',
         fontWeight: '400',
       },
       top: '15%',
@@ -120,7 +121,7 @@
       itemHeight: 10,
       textStyle: {
         color: '#fff',
-        fontSize: '1.2rem',
+        // fontSize: '1.2rem',
       },
     },
   }
@@ -151,7 +152,7 @@
       left: '3%',
       textStyle: {
         color: '#fff',
-        fontSize: '1.6rem',
+        // fontSize: '1.6rem',
         fontWeight: '400',
       },
       top: '15%',
@@ -169,7 +170,7 @@
       bottom: 10,
       textStyle: {
         color: '#fff',
-        fontSize: '1.2rem',
+        // fontSize: '1.2rem',
         fontWeight: '400',
       },
     },
@@ -235,12 +236,12 @@
 <style scoped lang="scss">
   .maintenance {
     position: relative;
-    padding: 2.4rem;
+    padding: 24px;
     box-sizing: border-box;
     .maintenance-charts {
       display: grid;
       grid-template-columns: 3fr 2fr 3fr;
-      gap: 2.4rem; /* 设置间距 */
+      gap: 24px; /* 设置间距 */
       height: 100%;
       > div {
         width: 100%;
@@ -253,9 +254,9 @@
     top: 16px;
     left: 16px;
     color: #fff;
-    font-size: 1.8rem;
-    padding-left: 4.5rem;
-    width: 40rem;
+    font-size: 18px;
+    padding-left: 45px;
+    width: 400px;
     height: 34px;
     background-image: url('@/assets/image/screen_item_header.png');
     background-size: cover;

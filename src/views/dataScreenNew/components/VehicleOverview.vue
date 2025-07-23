@@ -58,12 +58,22 @@
     piechar6,
   } from '@/mock/screen'
 
-  const chart1 = ref<HTMLElement | null>(null)
-  const chart2 = ref<HTMLElement | null>(null)
-  const chart3 = ref<HTMLElement | null>(null)
-  const chart4 = ref<HTMLElement | null>(null)
-  const chart5 = ref<HTMLElement | null>(null)
-  const chart6 = ref<HTMLElement | null>(null)
+  type PieChartInstance = InstanceType<typeof PieChart>
+  const chart1 = ref<PieChartInstance | null>(null)
+  const chart2 = ref<PieChartInstance | null>(null)
+  const chart3 = ref<PieChartInstance | null>(null)
+  const chart4 = ref<PieChartInstance | null>(null)
+  const chart5 = ref<PieChartInstance | null>(null)
+  const chart6 = ref<PieChartInstance | null>(null)
+
+  const chartRefs = ref<Array<PieChartInstance | null>>(
+    [chart1, chart2, chart3, chart4, chart5, chart6].map((item) => item.value),
+  )
+  const resizeAllCharts = () => {
+    chartRefs.value.forEach((chart) => {
+      chart?.resize() // 现在可以正确调用组件暴露的方法
+    })
+  }
 
   const pieData1 = ref(piechar1)
   const pieData2 = ref(piechar2)
@@ -88,7 +98,6 @@
       itemHeight: 10,
       textStyle: {
         color: '#fff',
-        fontSize: '1.2rem',
       },
     },
   }
@@ -101,7 +110,6 @@
       position: 'inside',
       formatter: '{c}',
       color: '#fff',
-      fontSize: '1.2rem',
     },
     labelLine: { show: false },
     emphasis: {
@@ -120,7 +128,6 @@
       position: 'inside',
       formatter: '{d}%',
       color: '#fff',
-      fontSize: '1.2rem',
     },
     labelLine: { show: false },
     emphasis: {
@@ -135,6 +142,11 @@
   pieSeriesOption.value = seriesOption
   pieSeriesOption3.value = seriesOption3
   pieOptions.value = option
+
+  // 暴露给父组件（如果需要）
+  defineExpose({
+    resizeAllCharts,
+  })
 </script>
 
 <style scoped lang="scss">
@@ -146,21 +158,16 @@
     gap: 5px; /* 可选：设置间距 */
     padding: 16px;
     box-sizing: border-box;
-    // display: flex;
-    > div {
-      width: 100%;
-      height: 100%;
-    }
 
     .screen-item-header {
       position: absolute;
-      top: 1.6rem;
-      left: 1.6rem;
+      top: 16px;
+      left: 16px;
       color: #fff;
-      font-size: 1.8rem;
-      padding-left: 4.5rem;
-      width: 40rem;
-      height: 3.4rem;
+      font-size: 18px;
+      padding-left: 45px;
+      width: 400px;
+      height: 34px;
       background-image: url('@/assets/image/screen_item_header.png');
       background-size: cover;
       background-repeat: no-repeat;

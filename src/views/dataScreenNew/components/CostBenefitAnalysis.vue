@@ -18,7 +18,7 @@
       left: '3%',
       textStyle: {
         color: '#fff',
-        fontSize: '1.6rem',
+        // fontSize: '1.6rem',
         fontWeight: '400',
       },
       top: '10%',
@@ -97,7 +97,7 @@
   .cost-benefit-analysis {
     width: 100%;
     height: 100%;
-    padding: 2.4rem;
+    padding: 24px;
     box-sizing: border-box;
     position: relative;
   }
@@ -106,10 +106,10 @@
     top: 16px;
     left: 16px;
     color: #fff;
-    font-size: 1.8rem;
-    padding-left: 4.5rem;
-    width: 40rem;
-    height: 3.4rem;
+    font-size: 18px;
+    padding-left: 45px;
+    width: 400px;
+    height: 34px;
     background-image: url('@/assets/image/screen_item_header.png');
     background-size: cover;
     background-repeat: no-repeat;
