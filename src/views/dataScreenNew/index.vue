@@ -27,28 +27,9 @@
 
   const container = ref<HTMLElement | null>(null)
   const isFullscreen = ref(false)
-  // 全屏切换
-  const toggleFullscreen = () => {
-    if (screenfull.isEnabled) {
-      screenfull.toggle(container.value)
-      isFullscreen.value = !screenfull.isFullscreen
-    }
-  }
-
-  // 监听全屏变化
-  if (screenfull.isEnabled) {
-    screenfull.on('change', () => {
-      isFullscreen.value = screenfull.isFullscreen
-    })
-  }
-  onBeforeUnmount(() => {
-    if (screenfull.isEnabled) {
-      screenfull.off('change', () => {})
-    }
-  })
 
   const screenWrapper = ref<HTMLElement | null>(null)
-  function resize() {
+  const resize = () => {
     if (!screenWrapper.value) return
 
     const designWidth = 1920
@@ -60,14 +41,97 @@
     const scaleY = clientHeight / designHeight
     container.value.style.transform = `scale(${scaleX}, ${scaleY})`
   }
+  // 全屏切换
+  const toggleFullscreen = async () => {
+    try {
+      if (!isFullscreen.value) {
+        await requestFullscreen(screenWrapper.value)
+      } else {
+        await exitFullscreen()
+      }
+    } catch (err) {
+      console.error('全屏错误:', err)
+    }
+  }
+  const requestFullscreen = async (element: HTMLElement | null) => {
+    const methods = [
+      'requestFullscreen',
+      'webkitRequestFullscreen',
+      'msRequestFullscreen',
+    ]
+
+    for (const method of methods) {
+      if (element[method]) {
+        await element[method]()
+        break
+      }
+    }
+  }
+
+  const exitFullscreen = async () => {
+    const methods = [
+      'exitFullscreen',
+      'webkitExitFullscreen',
+      'msExitFullscreen',
+    ]
+
+    for (const method of methods) {
+      if (document[method]) {
+        await document[method]()
+        break
+      }
+    }
+  }
+  const setupFullscreenListeners = () => {
+    const events = [
+      'fullscreenchange',
+      'webkitfullscreenchange',
+      'MSFullscreenChange',
+    ]
+    events.forEach((event) => {
+      document.addEventListener(event, handleFullscreenChange)
+    })
+  }
+  const handleFullscreenChange = () => {
+    isFullscreen.value = !!(
+      document.fullscreenElement ||
+      (document as any).webkitFullscreenElement ||
+      (document as any).msFullscreenElement
+    )
+    debouncedUpdate()
+  }
+  const debounce = (func: Function, delay: number) => {
+    let timeout: ReturnType<typeof setTimeout>
+    return (...args: any[]) => {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => func(...args), delay)
+    }
+  }
+  // 防抖优化
+  const debouncedUpdate = debounce(resize, 200)
+
+  onBeforeUnmount(() => {
+    if (screenfull.isEnabled) {
+      screenfull.off('change', () => {})
+    }
+  })
 
   onMounted(() => {
     resize()
-    window.addEventListener('resize', resize)
+    setupFullscreenListeners()
+    window.addEventListener('resize', debouncedUpdate)
   })
 
   onBeforeUnmount(() => {
-    window.removeEventListener('resize', resize)
+    window.removeEventListener('resize', debouncedUpdate)
+    const events = [
+      'fullscreenchange',
+      'webkitfullscreenchange',
+      'MSFullscreenChange',
+    ]
+    events.forEach((event) => {
+      document.removeEventListener(event, handleFullscreenChange)
+    })
   })
 </script>
 
@@ -82,13 +146,6 @@
     overflow: hidden;
   }
   .screen {
-    // background-color: #000318;
-    // width: 100%;
-    // height: 100vh;
-    // background-image: url('@/assets/image/screen_bg.png');
-    // background-size: cover;
-    // background-repeat: no-repeat;
-    // overflow: hidden;
     display: flex;
     flex-direction: column;
 
@@ -103,9 +160,7 @@
       grid-template-rows: 1fr 1fr; /* 上下两行，各占1份 */
       grid-template-columns: 1fr 1fr; /* 左右两列，各占1份 */
       gap: 24px; /* 可选：设置间距 */
-      // height: calc(100vh - 18rem); /* 确保容器占满整个视口高度 */
       padding: 0 24px 24px 24px; /* 上下内边距 */
-      // margin-top: -24px;
       min-height: 0; // 关键：允许内容收缩
       box-sizing: border-box;
 
